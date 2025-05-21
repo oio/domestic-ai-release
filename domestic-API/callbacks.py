@@ -87,7 +87,9 @@ async def rembg(request):
 
 async def roby(request): 
 	prompt = request.prompt
-	answer = await utils.query_llm(prompt, system_prompt="You are Roby, a bot that always provides a 1 sentence answer")
+	system_prompt = request.system_prompt
+	logger.info(f"Prompt: {prompt}\nSystem prompt: {system_prompt}")
+	answer = await utils.query_llm(prompt, system_prompt)
 	return {"result": answer}
 
 async def thanks(request):

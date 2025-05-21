@@ -50,10 +50,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 		const submitBtn = document.createElement("button");
 		submitBtn.type = "submit";
 		submitBtn.textContent = "Try it out";
-		const body = Object.fromEntries(new FormData(endpointElement))
-		console.log(body);
 		submitBtn.addEventListener("click", async (e) => {
 			e.preventDefault();
+			const body = Object.fromEntries(new FormData(endpointElement))
+			console.log("body:", body);
 			try {
 				const myHeaders = new Headers();
 				myHeaders.append("Content-Type", "application/json");

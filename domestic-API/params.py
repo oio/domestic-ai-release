@@ -1,5 +1,14 @@
 from pydantic import BaseModel, Field
 from typing import Optional
+import json
+import logging
+
+logger = logging.getLogger(__name__)
+
+with open('settings.json', 'r') as f:
+	settings = json.load(f)
+	logger.info(f"Settings: {settings}")
+
 
 class HaikuRequest(BaseModel):
 	about: str = Field(default="the moon", description="Topic for the haiku")
@@ -12,7 +21,7 @@ class ImageRequest(BaseModel):
 
 class PromptRequest(BaseModel):
 	prompt: str = Field(default="What's up?", description="Message for Roby")
-	system_prompt: Optional[str] = Field(default="You are Roby, a bot that always provides a 1 sentence answer", description="System prompt for the LLM")
+	system_prompt: Optional[str] = Field(default=settings["system_prompt"], description="System prompt for the LLM")
 
 class ThrowRequest(BaseModel):
 	faces: int = Field(default=6, description="Number of faces on the dice", ge=2)
