@@ -127,7 +127,13 @@ services = [
 		port=8042, 
 		endpoint="/queue-status",
 		command_path=os.path.join(DOMESTIC_AI_PATH, "domestic-tools", "domestic-imagen", "run-imagen.command")
-	)
+	), 
+	Startup(
+		name="UI", 
+		port=5173, 
+		endpoint="/",
+		command_path=os.path.join(DOMESTIC_AI_PATH, "domestic-ui", "run-ui.command")
+	),
 ]
 # add this after having set up the bot (see the domestic-bot README)
 """ Startup(
