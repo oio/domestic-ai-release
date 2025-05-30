@@ -34,8 +34,8 @@ declare module '$env/static/private' {
 	export const NVM_CD_FLAGS: string;
 	export const npm_package_devDependencies_prettier_plugin_svelte: string;
 	export const INIT_CWD: string;
-	export const SHELL: string;
 	export const TERM: string;
+	export const SHELL: string;
 	export const npm_package_devDependencies_vite: string;
 	export const TMPDIR: string;
 	export const CONDA_SHLVL: string;
@@ -81,8 +81,8 @@ declare module '$env/static/private' {
 	export const _CE_M: string;
 	export const npm_package_version: string;
 	export const npm_package_devDependencies__sveltejs_adapter_auto: string;
-	export const SHLVL: string;
 	export const HOME: string;
+	export const SHLVL: string;
 	export const npm_package_type: string;
 	export const LOGNAME: string;
 	export const CONDA_PYTHON_EXE: string;
@@ -135,8 +135,8 @@ declare module '$env/dynamic/private' {
 		NVM_CD_FLAGS: string;
 		npm_package_devDependencies_prettier_plugin_svelte: string;
 		INIT_CWD: string;
-		SHELL: string;
 		TERM: string;
+		SHELL: string;
 		npm_package_devDependencies_vite: string;
 		TMPDIR: string;
 		CONDA_SHLVL: string;
@@ -182,8 +182,8 @@ declare module '$env/dynamic/private' {
 		_CE_M: string;
 		npm_package_version: string;
 		npm_package_devDependencies__sveltejs_adapter_auto: string;
-		SHLVL: string;
 		HOME: string;
+		SHLVL: string;
 		npm_package_type: string;
 		LOGNAME: string;
 		CONDA_PYTHON_EXE: string;
