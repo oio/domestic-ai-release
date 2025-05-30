@@ -34,8 +34,8 @@ declare module '$env/static/private' {
 	export const NVM_CD_FLAGS: string;
 	export const npm_package_devDependencies_prettier_plugin_svelte: string;
 	export const INIT_CWD: string;
-	export const TERM: string;
 	export const SHELL: string;
+	export const TERM: string;
 	export const npm_package_devDependencies_vite: string;
 	export const TMPDIR: string;
 	export const CONDA_SHLVL: string;
@@ -59,6 +59,7 @@ declare module '$env/static/private' {
 	export const _CE_CONDA: string;
 	export const npm_config_frozen_lockfile: string;
 	export const PATH: string;
+	export const LaunchInstanceID: string;
 	export const XML_CATALOG_FILES: string;
 	export const npm_config_engine_strict: string;
 	export const __CFBundleIdentifier: string;
@@ -80,8 +81,8 @@ declare module '$env/static/private' {
 	export const _CE_M: string;
 	export const npm_package_version: string;
 	export const npm_package_devDependencies__sveltejs_adapter_auto: string;
-	export const HOME: string;
 	export const SHLVL: string;
+	export const HOME: string;
 	export const npm_package_type: string;
 	export const LOGNAME: string;
 	export const CONDA_PYTHON_EXE: string;
@@ -92,6 +93,7 @@ declare module '$env/static/private' {
 	export const CONDA_DEFAULT_ENV: string;
 	export const npm_config_user_agent: string;
 	export const npm_package_scripts_prepare: string;
+	export const SECURITYSESSIONID: string;
 	export const npm_node_execpath: string;
 	export const NODE_ENV: string;
 }
@@ -133,8 +135,8 @@ declare module '$env/dynamic/private' {
 		NVM_CD_FLAGS: string;
 		npm_package_devDependencies_prettier_plugin_svelte: string;
 		INIT_CWD: string;
-		TERM: string;
 		SHELL: string;
+		TERM: string;
 		npm_package_devDependencies_vite: string;
 		TMPDIR: string;
 		CONDA_SHLVL: string;
@@ -158,6 +160,7 @@ declare module '$env/dynamic/private' {
 		_CE_CONDA: string;
 		npm_config_frozen_lockfile: string;
 		PATH: string;
+		LaunchInstanceID: string;
 		XML_CATALOG_FILES: string;
 		npm_config_engine_strict: string;
 		__CFBundleIdentifier: string;
@@ -179,8 +182,8 @@ declare module '$env/dynamic/private' {
 		_CE_M: string;
 		npm_package_version: string;
 		npm_package_devDependencies__sveltejs_adapter_auto: string;
-		HOME: string;
 		SHLVL: string;
+		HOME: string;
 		npm_package_type: string;
 		LOGNAME: string;
 		CONDA_PYTHON_EXE: string;
@@ -191,6 +194,7 @@ declare module '$env/dynamic/private' {
 		CONDA_DEFAULT_ENV: string;
 		npm_config_user_agent: string;
 		npm_package_scripts_prepare: string;
+		SECURITYSESSIONID: string;
 		npm_node_execpath: string;
 		NODE_ENV: string;
 		[key: `PUBLIC_${string}`]: undefined;
