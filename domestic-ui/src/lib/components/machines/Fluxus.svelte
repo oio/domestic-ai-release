@@ -3,11 +3,20 @@
 	import LeftHand from '$lib/components/machines/LeftHand.svelte'
 	import RightHand from '$lib/components/machines/RightHand.svelte'
 	import Machine from '$lib/components/machines/Machine.svelte'
+	import Connection from '$lib/components/machines/Connection.svelte';
+	import { storeVar } from '$lib/stores.js'
 
+	let { machineType } = $props()
 	
 	let windowWidth = $state(1000),
-		windowHeight = $state(1000)
-	const isVertical = $derived(windowWidth < 550)
+		windowHeight = $state(1000), 
+		isVertical = $derived(windowWidth < 550)
+
+	const cols = {
+		'chat' : 'bg-red-100',
+		'image' : 'bg-blue-100', 
+		'rembg' : 'bg-amber-100'
+	}
 
 	
 </script>
@@ -16,24 +25,13 @@
 	windowWidth = window.innerWidth;
 	windowHeight = window.innerHeight;
 }} />
-<!-- <div class="w-full h-24 {isVertical ? 'flex-col items-start justify-center' : 'flex justify-around'}"> -->
-	<div class="flex items-center justify-center w-full min-h-screen bg-black">
-	<div class='p-2 bg-blue-600'>
-		l
-	</div>
-	<div class='p-2 bg-blue-600'>
-		c
-	</div>
-	<div class=' p-2 bg-blue-600'>
-		r
-	</div>
-	<!-- <div>
-		<LeftHand vertical={isVertical} />
-	</div>
-	<div>
-		<Machine vertical={isVertical} />
-	</div>
-	<div>
-		<RightHand vertical={isVertical} />
-	</div> -->
+<div class="w-full h-full h-full flex {isVertical ? 'flex-col items-center justify-center' : 'justify-around'} {cols[machineType]}">
+<!-- <div class="flex items-center justify-center w-full "> -->
+	<LeftHand vertical={isVertical} />
+	<Connection vertical={isVertical} />
+	<Machine vertical={isVertical} />
+	<Connection vertical={isVertical} />
+	<RightHand vertical={isVertical} />
 </div>
+
+<div class='fixed top-12 left-12'>{ $storeVar }</div>
