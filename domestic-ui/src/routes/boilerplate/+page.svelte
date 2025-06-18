@@ -7,7 +7,7 @@
 		event.preventDefault()
 		responseChat = ''
 		const prompt = event.target.prompt.value;
-		const response = await fetch('/api/query', {
+		const response = await fetch('/api/LLM', {
 			method: 'POST',
 			body: JSON.stringify({ prompt })
 		});

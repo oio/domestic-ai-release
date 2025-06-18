@@ -1,5 +1,12 @@
-import adapter from '@sveltejs/adapter-auto';
+import adapter from '@sveltejs/adapter-auto'
 
-const config = { kit: { adapter: adapter() } };
+const config = { 
+	kit: { 
+		adapter: adapter(),
+		alias: {
+			$components: './src/lib/components'
+		}
+	}
+}
 
-export default config;
+export default config

@@ -1,0 +1,1 @@
+<div>BgRemovalOutput</div>

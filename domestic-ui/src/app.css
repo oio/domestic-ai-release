@@ -1,22 +1,28 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600&display=swap');
 @import 'tailwindcss';
 
 @theme {
 	--font-outfit: 'Outfit', sans-serif;
 	--color-oio-blue: #4870FF;
-	--color-gray-dark: #333333;
+	--color-oio-red: #FF857B;
+	--color-oio-violet: #9F86FF;
+	--color-gray-dark: #E6E6E6;
 	--color-gray-light: #E5E5E5;
 	--color-gray-ultralight: #F5F5F5;
 }
 
 body {
-	@apply px-6 py-4 w-screen h-screen max-w-screen max-h-screen flex flex-col;
+	background-image: radial-gradient(circle, #E6E6E6 1px, transparent 1px); background-size: 1rem 1rem;
+}
+
+body {
+	@apply px-12 py-4 w-screen h-screen max-w-screen max-h-screen flex flex-col bg-gray-ultralight;
 }
 
 h1, h2, h3, h4, h5, h6 {
 	@apply font-outfit font-semibold;
 }
 
-.machine {
-	@apply border-2 border-gray-dark rounded-lg;
+button {
+	@apply cursor-pointer;
 }

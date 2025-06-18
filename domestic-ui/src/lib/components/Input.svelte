@@ -1,0 +1,87 @@
+<script>
+	import { borderColors, colors, hexColors, callLLM, callImagen } from '$lib'
+	import LLMInput from '$components/inputs/LLMInput.svelte'
+	import ImagenInput from '$components/inputs/ImagenInput.svelte'
+	import BgRemovalInput from '$components/inputs/BgRemovalInput.svelte'
+	import InputBtn from '$components/inputs/InputBtn.svelte'
+	import { status } from '$lib/stores'
+
+	let { vertical } = $props()
+
+	$inspect($status)
+
+	const handleSubmitLLM = async (prompt) => {
+		status.update(s => ({
+			...s,
+			input: prompt,
+			output: null
+		}))
+		console.log('calling LLM with prompt', prompt)
+		await callLLM(prompt)
+	}
+	const handleSubmitImagen = async (prompt) => {
+		status.update(s => ({
+			...s,
+			input: prompt,
+			output: null
+		}))
+		console.log(prompt)
+		await callImagen(prompt)
+	}
+	const handleSubmitBgRemoval = (image) => {
+		status.update(s => ({
+			...s,
+			input: image,
+			output: null
+		}))
+		console.log(image)
+	}
+	const backToChoice = () => {
+		status.update(s => ({
+			...s,
+			input: null,
+			output: null, 
+			type: null
+		}))
+	}
+	const typeChoice = (type) => {
+		status.update(s => ({
+			...s,
+			output: null, 
+			type: type
+		}))
+	}
+</script>
+
+<div class="relative {vertical ? 'w-full max-w-64' : 'w-1/3'} bg-gray-ultralight border-2 rounded-xl p-2" 
+style="border: {$status.type ? `2px solid ${hexColors[$status.type]}` : '2px dashed #E5E5E5'}">
+	{#if $status.type}
+		<h3 class="text-{colors[$status.type]} font-semibold mb-2">
+			{#if $status.type === 'llm'}
+				Generic Prompt
+			{:else if $status.type === 'image'}
+				Image Generation Prompt
+			{:else if $status.type === 'rembg'}
+				Background Removal Prompt
+			{/if}
+		</h3>
+	{/if}
+	{#if $status.type === 'llm'}
+		<LLMInput handleSubmit={handleSubmitLLM} />
+	{:else if $status.type === 'image'}
+		<ImagenInput handleSubmit={handleSubmitImagen} />
+	{:else if $status.type === 'rembg'}
+		<BgRemovalInput handleSubmit={handleSubmitBgRemoval} />
+	{:else if $status.type === null}
+		<div class="w-full flex flex-col items-center justify-center gap-2 p-2">
+			<InputBtn type="llm" title="LLM" description="Generic prompt" onClick={typeChoice} />
+			<InputBtn type="image" title="Image Generation" description="Image generation prompt" onClick={typeChoice} />
+			<InputBtn type="rembg" title="Background Removal" description="Background removal prompt" onClick={typeChoice} />
+		</div>
+	{/if}
+	{#if $status.type}
+		<button onclick={backToChoice} class="absolute top-1/2 -translate-y-1/2 -left-10 p-2 bg-white rounded-full">
+			<img src="/assets/home.svg" alt="home" class="w-4 h-4" />
+		</button>
+	{/if}
+</div>
