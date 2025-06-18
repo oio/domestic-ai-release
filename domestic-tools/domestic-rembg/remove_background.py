@@ -47,12 +47,20 @@ async def remove_bg(request: Request):
 	"""
 	data = await request.json()
 	image_url = data.get("image_url")
+	is_b64 = data.get("is_b64", False)
 	logger.info(f"Removing background from {image_url}")
 	try:
 		# Download the image
-		async with aiohttp.ClientSession() as session:
+		if is_b64:
+			image_data = base64.b64decode(image_url)
+		else:
+			async with aiohttp.ClientSession() as session:
+				async with session.get(image_url) as response:
+					image_data = await response.read()
+	
+		""" async with aiohttp.ClientSession() as session:
 			async with session.get(image_url) as response:
-				image_data = await response.read()
+				image_data = await response.read() """
 		
 		# Process with rembg
 		input_image = Image.open(BytesIO(image_data))
