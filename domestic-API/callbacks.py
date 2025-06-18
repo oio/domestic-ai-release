@@ -82,7 +82,8 @@ async def ping(request):
 
 async def rembg(request): 
 	image_url = request.image_url
-	image_base64 = await utils.remove_background(image_url)
+	is_b64 = request.is_b64
+	image_base64 = await utils.remove_background(image_url, is_b64)
 	return {"result": image_base64}
 
 async def roby(request): 

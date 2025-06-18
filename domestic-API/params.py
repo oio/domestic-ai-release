@@ -28,3 +28,4 @@ class ThrowRequest(BaseModel):
 
 class RemoveBgRequest(BaseModel):
 	image_url: Optional[str] = Field(default="https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Octopus2.jpg/1920px-Octopus2.jpg", description="URL of the image to process")
+	is_b64: bool = Field(default=False, description="Whether the image is base64 encoded")

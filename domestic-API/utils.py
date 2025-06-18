@@ -156,7 +156,7 @@ async def generate_image(prompt, width=512, height=512):
 	# Queue the image generation request
 	return await queue_image(_execute_image_gen, prompt, width, height)
 
-async def remove_background(image_url):
+async def remove_background(image_url, is_b64):
 	"""
 	Remove background from image at given URL
 	
@@ -168,7 +168,8 @@ async def remove_background(image_url):
 	"""
 	url = "http://0.0.0.0:8008/rembg"
 	payload = {
-		"image_url": image_url
+		"image_url": image_url,
+		"is_b64": is_b64
 	}
 	async with aiohttp.ClientSession() as session:
 		async with session.post(url, json=payload) as response:
