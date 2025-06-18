@@ -16,8 +16,8 @@
 			<div class="w-full mb-4" style="height: {padHeight}px;"></div>
 		{/if}
 	<div class="w-full h-full">
-		<div class="w-full h-full bg-gray-ultralight border-2 rounded-xl p-2" style="border: 2px solid {hexColors[$status.type]}">
-			<h3 class="text-{colors[$status.type]} font-semibold mb-2">Result</h3>
+		<div class="w-full h-full bg-gray-ultralight border-2 rounded-xl p-4" style="border: 2px solid {hexColors[$status.type]}">
+			<h3 class="font-semibold mb-4 text-sm" style="color: {$status.type ? hexColors[$status.type] : '#000'}">Result</h3>
 
 			{#if $status.error}
 				<div class="text-red-500">

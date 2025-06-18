@@ -72,3 +72,19 @@ export const callImagen = async (prompt) => {
 		}))
 	}
 }
+
+export const callBgRemoval = async (data) => {
+	const response = await fetch('/api/rembg', {
+		method: 'POST',
+		body: JSON.stringify(data)
+	})
+
+	if (response.ok) {
+		let result = await response.json()
+		console.log(result)
+		status.update(s => ({
+			...s,
+			output: result.result
+		}))
+	}
+}

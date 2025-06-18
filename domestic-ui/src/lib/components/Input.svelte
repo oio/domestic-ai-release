@@ -1,5 +1,5 @@
 <script>
-	import { borderColors, colors, hexColors, callLLM, callImagen } from '$lib'
+	import { borderColors, colors, hexColors, callLLM, callImagen, callBgRemoval } from '$lib'
 	import LLMInput from '$components/inputs/LLMInput.svelte'
 	import ImagenInput from '$components/inputs/ImagenInput.svelte'
 	import BgRemovalInput from '$components/inputs/BgRemovalInput.svelte'
@@ -28,13 +28,14 @@
 		console.log(prompt)
 		await callImagen(prompt)
 	}
-	const handleSubmitBgRemoval = (image) => {
+	const handleSubmitBgRemoval = async (data) => {
 		status.update(s => ({
 			...s,
-			input: image,
+			input: data,
 			output: null
 		}))
-		console.log(image)
+		console.log(data)
+		await callBgRemoval(data)
 	}
 	const backToChoice = () => {
 		status.update(s => ({
@@ -53,10 +54,10 @@
 	}
 </script>
 
-<div class="relative {vertical ? 'w-full max-w-64' : 'w-1/3'} bg-gray-ultralight border-2 rounded-xl p-2" 
+<div class="relative {vertical ? 'w-full max-w-80' : 'w-1/3'} bg-gray-ultralight border-2 rounded-xl p-4" 
 style="border: {$status.type ? `2px solid ${hexColors[$status.type]}` : '2px dashed #E5E5E5'}">
 	{#if $status.type}
-		<h3 class="text-{colors[$status.type]} font-semibold mb-2">
+		<h3 class="font-semibold text-sm mb-4" style="color: {$status.type ? hexColors[$status.type] : '#000'}">
 			{#if $status.type === 'llm'}
 				Generic Prompt
 			{:else if $status.type === 'image'}
@@ -74,9 +75,9 @@ style="border: {$status.type ? `2px solid ${hexColors[$status.type]}` : '2px das
 		<BgRemovalInput handleSubmit={handleSubmitBgRemoval} />
 	{:else if $status.type === null}
 		<div class="w-full flex flex-col items-center justify-center gap-2 p-2">
-			<InputBtn type="llm" title="LLM" description="Generic prompt" onClick={typeChoice} />
-			<InputBtn type="image" title="Image Generation" description="Image generation prompt" onClick={typeChoice} />
-			<InputBtn type="rembg" title="Background Removal" description="Background removal prompt" onClick={typeChoice} />
+			<InputBtn type="llm" title="LLM" description="All purpose text-based command" onClick={typeChoice} />
+			<InputBtn type="image" title="Image Generation" description="Generate image from text description" onClick={typeChoice} />
+			<InputBtn type="rembg" title="Background Removal" description="Creates png transparent background of a image" onClick={typeChoice} />
 		</div>
 	{/if}
 	{#if $status.type}
