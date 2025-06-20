@@ -29,7 +29,7 @@ export const modelNames = {
 	rembg: ['Rembg']
 }
 
-export const callLLM = async (prompt) => {
+/* export const callLLM = async (prompt) => {
 	const response = await fetch('/api/LLM', {
 		method: 'POST',
 		body: JSON.stringify({ prompt })
@@ -49,9 +49,42 @@ export const callLLM = async (prompt) => {
 			error: response.error
 		}))
 	}
+} */
+
+export const callLLM = async (prompt) => {
+	try {
+		const response = await fetch('http://localhost:8000/api/roby', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({ prompt })
+		});
+
+		if (response.ok) {
+			let result = await response.json();
+			console.log(result);
+			status.update(s => ({
+				...s,
+				output: result.result
+			}));
+		} else {
+			console.error(response);
+			status.update(s => ({
+				...s,
+				error: 'API request failed'
+			}));
+		}
+	} catch (error) {
+		console.error(error);
+		status.update(s => ({
+			...s,
+			error: error.message
+		}));
+	}
 }
 
-export const callImagen = async (prompt) => {
+/* export const callImagen = async (prompt) => {
 	const response = await fetch('/api/imagen', {
 		method: 'POST',
 		body: JSON.stringify({ prompt })
@@ -71,9 +104,41 @@ export const callImagen = async (prompt) => {
 			error: response.error
 		}))
 	}
+} */
+
+export const callImagen = async (prompt) => {
+	try {
+		const response = await fetch('http://localhost:8000/api/image', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({ prompt })
+		});
+		if (response.ok) {
+			let result = await response.json();
+			console.log(result);
+			status.update(s => ({
+				...s,
+				output: result.result.b64
+			}));
+		} else {
+			console.error(response);
+			status.update(s => ({
+				...s,
+				error: 'API request failed'
+			}));
+		}
+	} catch (error) {
+		console.error(error);
+		status.update(s => ({
+			...s,
+			error: error.message
+		}));
+	}
 }
 
-export const callBgRemoval = async (data) => {
+/* export const callBgRemoval = async (data) => {
 	const response = await fetch('/api/rembg', {
 		method: 'POST',
 		body: JSON.stringify(data)
@@ -86,5 +151,31 @@ export const callBgRemoval = async (data) => {
 			...s,
 			output: result.result
 		}))
+	}
+} */
+
+export const callBgRemoval = async (data) => {
+	try {
+		const response = await fetch('http://localhost:8000/api/rembg', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(data)
+		});
+		if (response.ok) {
+			let result = await response.json();
+			console.log(result);
+			status.update(s => ({
+				...s,
+				output: result.result
+			}));
+		}
+	} catch (error) {
+		console.error(error);
+		status.update(s => ({
+			...s,
+			error: error.message
+		}));
 	}
 }

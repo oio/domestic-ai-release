@@ -8,6 +8,26 @@
 	let { vertical, visible } = $props()
 
 	let padHeight = $state(0)
+
+	const editPrompt = () => {
+		status.update(s => ({
+			...s,
+			input: null,
+			output: null,
+			error: null
+		}))
+	}
+
+	const newCommand = () => {
+		status.update(s => ({
+			...s,
+			type: null,
+			input: null,
+			prompt: null,
+			output: null,
+			error: null
+		}))
+	}
 </script>
 
 <div class="{vertical ? 'w-full max-w-64 mb-24' : 'w-1/3  h-fit'}">
@@ -16,7 +36,7 @@
 			<div class="w-full mb-4" style="height: {padHeight}px;"></div>
 		{/if}
 	<div class="w-full h-full">
-		<div class="w-full h-full bg-gray-ultralight border-2 rounded-xl p-4" style="border: 2px solid {hexColors[$status.type]}">
+		<div class="w-full h-full bg-gray-ultralight border-2 rounded-2xl p-4 text-sm" style="border: 2px solid {hexColors[$status.type]}">
 			<h3 class="font-semibold mb-4 text-sm" style="color: {$status.type ? hexColors[$status.type] : '#000'}">Result</h3>
 
 			{#if $status.error}
@@ -34,8 +54,8 @@
 			{/if}
 		</div>
 		<div bind:clientHeight={padHeight} class="w-full mt-4 flex items-center justify-between gap-2">
-			<button class="w-[45%] {bgColors[$status.type]} text-white rounded-xl p-2 text-xs flex items-center justify-between"><div>edit  prompt</div><div><img src="/assets/pencil.svg" alt="pencil" class="w-3 h-3"></div></button>
-			<button class="w-[45%] bg-white rounded-xl p-2 text-xs flex items-center justify-between"><div>new command</div><div><img src="/assets/sparkle.svg" alt="sparkle" class="w-3 h-3"></div></button>
+			<button onclick={editPrompt} class="w-[45%] {bgColors[$status.type]} text-white rounded-xl p-2 text-xs flex items-center justify-between"><div>edit  prompt</div><div><img src="/assets/pencil.svg" alt="pencil" class="w-3 h-3"></div></button>
+			<button onclick={newCommand} class="w-[45%] bg-white rounded-xl p-2 text-xs flex items-center justify-between"><div>new command</div><div><img src="/assets/sparkle.svg" alt="sparkle" class="w-3 h-3"></div></button>
 		</div>
 	</div>
 

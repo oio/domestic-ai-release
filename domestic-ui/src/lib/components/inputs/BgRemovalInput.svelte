@@ -1,9 +1,10 @@
 <script>
+	import { status } from '$lib/stores'
 	let { handleSubmit } = $props()
 
 	let url = $state('https://static1.cbrimages.com/wordpress/wp-content/uploads/2022/11/Pokemon-Ditto.jpg'),
 		b64 = $state(null),
-		disabled = $derived(url.length === 0 && !uploadedFile),
+		disabled = $derived(url.length === 0 && !uploadedFile || ($status.input && !$status.output)),
 		isDragging = $state(false),
 		fileInput = $state(null),
 		uploadedFile = $state(null)  // Changed from array to single file
@@ -87,7 +88,7 @@
 	<!-- File Upload Area -->
 	<div class="mb-4">
 		<div 
-			class="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center transition-colors duration-200 cursor-pointer hover:border-gray-400 {isDragging ? 'border-blue-400 bg-blue-50' : ''}"
+			class="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center transition-colors duration-200 cursor-pointer hover:border-gray-400 {isDragging ? 'border-blue-400 bg-blue-50' : ''} {disabled ? 'bg-gray-dark' : 'bg-white'}"
 			ondragover={handleDragOver}
 			ondragleave={handleDragLeave}
 			ondrop={handleDrop}
@@ -104,8 +105,9 @@
 					bind:value={url}
 					type="url" 
 					placeholder="paste a url" 
-					class="w-full p-2 border border-gray-300 rounded mt-2"
+					class="w-full p-2 border border-gray-300 rounded mt-2 {disabled ? 'bg-gray-dark' : 'bg-white'}"
 					onclick={e => e.stopPropagation()}
+					disabled={disabled}
 				/>
 			</div>
 		</div>
@@ -140,7 +142,7 @@
 	<div class="relative">
 		<button 
 			type="submit" 
-			class="absolute bottom-3 right-2 bg-black/20 text-white p-1 aspect-square rounded-full disabled:opacity-30 disabled:cursor-not-allowed" 
+			class="absolute bottom-3 right-2 bg-black/66 text-white p-1 aspect-square rounded-full disabled:opacity-30 disabled:cursor-not-allowed" 
 			disabled={disabled}
 		>
 			<img src="/assets/arrow.svg" alt="arrow" class="w-4 h-4">

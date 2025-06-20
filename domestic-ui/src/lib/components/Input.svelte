@@ -54,7 +54,7 @@
 	}
 </script>
 
-<div class="relative {vertical ? 'w-full max-w-80' : 'w-1/3'} bg-gray-ultralight border-2 rounded-xl p-4" 
+<div class="relative {vertical ? 'w-full max-w-80' : 'w-1/3'} bg-gray-ultralight border-2 rounded-2xl p-4" 
 style="border: {$status.type ? `2px solid ${hexColors[$status.type]}` : '2px dashed #E5E5E5'}">
 	{#if $status.type}
 		<h3 class="font-semibold text-sm mb-4" style="color: {$status.type ? hexColors[$status.type] : '#000'}">

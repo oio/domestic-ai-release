@@ -8,18 +8,7 @@
 	
 	let windowWidth = $state(1000),
 		windowHeight = $state(1000), 
-		isVertical = $derived(windowWidth < 800), 
-		type = $state(null),
-		input = $state(null),
-		output = $state(null),
-		error = $state(null)
-
-	$effect(() => {
-		type = $status.type
-		input = $status.input
-		output = $status.output
-		error = $status.error
-	})	
+		isVertical = $derived(windowWidth < 800)
 </script>
 
 <svelte:window on:resize={() => {
@@ -27,9 +16,9 @@
 	windowHeight = window.innerHeight;
 }} />
 <div class="w-full h-full flex {isVertical ? 'flex-col items-center justify-center' : 'justify-around items-center'}">
-	<Input type={type} vertical={isVertical} />
-	<Connection visible={input} vertical={isVertical} type={type} loading={input && !output} />
-	<Center visible={input} loading={input && !output} type={type} vertical={isVertical} />
-	<Connection visible={output} vertical={isVertical} type={type} loading={!output} />
-	<Output visible={output} type={type} vertical={isVertical} />
+	<Input vertical={isVertical} />
+	<Connection visible={$status.input} vertical={isVertical} loading={$status.input && !$status.output} />
+	<Center visible={$status.input} loading={$status.input && !$status.output} vertical={isVertical} />
+	<Connection visible={$status.output} vertical={isVertical} loading={!$status.output} />
+	<Output visible={$status.output} vertical={isVertical} />
 </div>

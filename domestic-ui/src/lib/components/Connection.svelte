@@ -1,6 +1,7 @@
 <script>
 	import { hexColors } from '$lib'
-	let { vertical, type, loading, visible } = $props()
+	import { status } from '$lib/stores'
+	let { vertical, loading, visible } = $props()
 
 	let width = $state(0),
 		height = $state(0)
@@ -12,15 +13,15 @@
 			<svg width={width} height={height} viewBox="0 0 {width} {height}" fill="none" xmlns="http://www.w3.org/2000/svg">
 				{#if loading}
 					{#if vertical}
-						<line class="animate-dash" x1="{width / 2}" y1="0" x2="{width / 2}" y2="{height}" stroke="{hexColors[type]}" stroke-width="6" stroke-dasharray="0 10" stroke-linecap="round" />
+						<line class="animate-dash" x1="{width / 2}" y1="0" x2="{width / 2}" y2="{height}" stroke="{hexColors[$status.type]}" stroke-width="6" stroke-dasharray="0 10" stroke-linecap="round" />
 					{:else}
-						<line class="animate-dash" x1="0" y1="{height / 2}" x2="{width}" y2="{height / 2}" stroke="{hexColors[type]}" stroke-width="6" stroke-dasharray="0 10" stroke-linecap="round" />
+						<line class="animate-dash" x1="0" y1="{height / 2}" x2="{width}" y2="{height / 2}" stroke="{hexColors[$status.type]}" stroke-width="6" stroke-dasharray="0 10" stroke-linecap="round" />
 					{/if}
 				{:else}
 					{#if vertical}
-						<line x1="{width / 2}" y1="0" x2="{width / 2}" y2="{height}" stroke="{hexColors[type]}" stroke-width="2"/>
+						<line x1="{width / 2}" y1="0" x2="{width / 2}" y2="{height}" stroke="{hexColors[$status.type]}" stroke-width="2"/>
 					{:else}
-						<line x1="0" y1="{height / 2}" x2="{width}" y2="{height / 2}" stroke="{hexColors[type]}" stroke-width="2"/>
+						<line x1="0" y1="{height / 2}" x2="{width}" y2="{height / 2}" stroke="{hexColors[$status.type]}" stroke-width="2"/>
 					{/if}
 				{/if}
 			</svg>
