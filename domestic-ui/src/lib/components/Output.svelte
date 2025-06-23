@@ -3,6 +3,7 @@
 	import LLMOutput from '$components/outputs/LLMOutput.svelte'
 	import ImagenOutput from '$components/outputs/ImagenOutput.svelte'
 	import BgRemovalOutput from '$components/outputs/BgRemovalOutput.svelte'
+	import { fade } from 'svelte/transition'
 	import { status } from '$lib/stores'
 
 	let { vertical, visible } = $props()
@@ -35,7 +36,7 @@
 		{#if !vertical}
 			<div class="w-full mb-4" style="height: {padHeight}px;"></div>
 		{/if}
-	<div class="w-full h-full">
+	<div in:fade={{duration: 300}} out:fade={{duration: 100}} class="w-full h-full">
 		<div class="w-full h-full bg-gray-ultralight border-2 rounded-2xl p-4 text-sm" style="border: 2px solid {hexColors[$status.type]}">
 			<h3 class="font-semibold mb-4 text-sm" style="color: {$status.type ? hexColors[$status.type] : '#000'}">Result</h3>
 
