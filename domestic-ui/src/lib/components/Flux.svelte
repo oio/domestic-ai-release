@@ -1,14 +1,20 @@
 <script>
-	import { onMount } from 'svelte'
 	import Input from '$components/Input.svelte'
 	import Output from '$components/Output.svelte'
 	import Center from '$components/Center.svelte'
 	import Connection from '$components/Connection.svelte';
 	import { status } from '$lib/stores.js'
+	import { onMount } from 'svelte'
 	
 	let windowWidth = $state(1000),
 		windowHeight = $state(1000), 
 		isVertical = $derived(windowWidth < 1000)
+
+	onMount(() => {
+		windowWidth = window.innerWidth;
+		windowHeight = window.innerHeight;
+		isVertical = windowWidth < 1000;
+	})
 </script>
 
 <svelte:window on:resize={() => {

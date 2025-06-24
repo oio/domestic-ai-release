@@ -29,6 +29,17 @@
 			error: null
 		}))
 	}
+
+	$effect(() => {
+		if (visible && vertical) {
+		setTimeout(() => {
+			window.scrollTo({
+				top: document.body.scrollHeight,
+				behavior: 'smooth'
+			})
+		}, 100)
+		}
+	})
 </script>
 
 <div class="{vertical ? 'w-full max-w-64 mb-24' : 'w-1/3  h-fit'}">
