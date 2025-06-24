@@ -8,7 +8,7 @@
 	
 	let windowWidth = $state(1000),
 		windowHeight = $state(1000), 
-		isVertical = $derived(windowWidth < 800)
+		isVertical = $derived(windowWidth < 1000)
 </script>
 
 <svelte:window on:resize={() => {

@@ -55,7 +55,7 @@
 			{/if}
 		</div>
 		<div bind:clientHeight={padHeight} class="w-full mt-4 flex items-center justify-between gap-2">
-			<button onclick={editPrompt} class="w-[45%] {bgColors[$status.type]} text-white rounded-xl p-2 text-xs flex items-center justify-between"><div>edit  prompt</div><div><img src="/assets/pencil.svg" alt="pencil" class="w-3 h-3"></div></button>
+			<button onclick={editPrompt} class="w-[45%] {bgColors[$status.type]} text-white rounded-xl p-2 text-xs flex items-center justify-between"><div>{$status.type == 'llm' || $status.type == 'image' ? 'edit prompt' : 'new image'}</div><div><img src="/assets/pencil.svg" alt="pencil" class="w-3 h-3"></div></button>
 			<button onclick={newCommand} class="w-[45%] bg-white rounded-xl p-2 text-xs flex items-center justify-between"><div>new command</div><div><img src="/assets/sparkle.svg" alt="sparkle" class="w-3 h-3"></div></button>
 		</div>
 	</div>

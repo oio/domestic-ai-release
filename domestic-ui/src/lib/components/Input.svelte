@@ -75,8 +75,30 @@
 </script>
 
 <div class="relative {vertical ? 'w-full max-w-80' : 'w-1/3'}">
+	{#if $status.type && !vertical}
+		<button onclick={backToChoice} 
+				disabled={$status.input && !$status.output}
+				class="{vertical ? 'absolute top-1/2 -translate-y-1/2 -left-10' : 'absolute top-1/2 -translate-y-1/2 -left-10'} p-2 bg-white disabled:bg-gray-ultralight rounded-full shadow-lg hover:shadow-xl transition-shadow duration-200"
+				in:receive={{ key: 'morph-element' }}
+				out:send={{ key: 'morph-element' }}>
+			<img src="/assets/home.svg" alt="home" class="w-4 h-4" />
+		</button>
+	{/if}
+	{#if vertical}
+		<div class="w-full h-10 flex items-center justify-center">
+			{#if $status.type}
+				<button onclick={backToChoice} 
+						disabled={$status.input && !$status.output}
+						class="p-2 bg-white disabled:bg-gray-ultralight rounded-full shadow-lg hover:shadow-xl transition-shadow duration-200"
+						in:receive={{ key: 'morph-element' }}
+						out:send={{ key: 'morph-element' }}>
+					<img src="/assets/home.svg" alt="home" class="w-4 h-4" />
+				</button>
+			{/if}
+		</div>
+	{/if}
 	{#if $status.type}
-		<div class="absolute {vertical ? 'w-full max-w-80' : 'w-full'} top-1/2 -translate-y-1/2 left-0  bg-gray-ultralight border-2 rounded-2xl p-4 h-fit" 
+		<div class="{vertical ? '' : 'absolute top-1/2 -translate-y-1/2 left-0'} {vertical ? 'w-full max-w-80' : 'w-full'} bg-gray-ultralight border-2 rounded-2xl p-4 h-fit" 
 		style="border: {$status.type ? `2px solid ${hexColors[$status.type]}` : '2px dashed #E5E5E5'}">
 			<h3 class="font-semibold text-sm mb-4" style="color: {$status.type ? hexColors[$status.type] : '#000'}">
 				{#if $status.type === 'llm'}
@@ -98,16 +120,17 @@
 			{/if}
 		</div>
 	{/if}
-	{#if $status.type}
+	<!-- {#if $status.type}
 		<button onclick={backToChoice} 
-				class="absolute top-1/2 -translate-y-1/2 -left-10 p-2 bg-white rounded-full shadow-lg hover:shadow-xl transition-shadow duration-200"
+				disabled={$status.input && !$status.output}
+				class="{vertical ? 'absolute top-1/2 -translate-y-1/2 -left-10' : 'absolute top-1/2 -translate-y-1/2 -left-10'} p-2 bg-white disabled:bg-gray-ultralight rounded-full shadow-lg hover:shadow-xl transition-shadow duration-200"
 				in:receive={{ key: 'morph-element' }}
 				out:send={{ key: 'morph-element' }}>
 			<img src="/assets/home.svg" alt="home" class="w-4 h-4" />
 		</button>
-	{/if}
+	{/if} -->
 	{#if $status.type == null} 
-		<div class="absolute top-1/2 -translate-y-1/2 left-0" in:receive={{ key: 'morph-element' }} out:send={{ key: 'morph-element' }}>
+		<div class="{vertical ? '' : 'absolute top-1/2 -translate-y-1/2 left-0'}" in:receive={{ key: 'morph-element' }} out:send={{ key: 'morph-element' }}>
 			<div class=" bg-gray-ultralight border-2 rounded-2xl p-4 h-fit" 
 			style="border: {$status.type ? `2px solid ${hexColors[$status.type]}` : '2px dashed #E5E5E5'}">
 				<div class="w-full flex flex-col items-center justify-center gap-2 p-2"  >
