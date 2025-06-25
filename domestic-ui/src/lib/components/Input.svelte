@@ -4,11 +4,14 @@
 	import ImagenInput from '$components/inputs/ImagenInput.svelte'
 	import BgRemovalInput from '$components/inputs/BgRemovalInput.svelte'
 	import InputBtn from '$components/inputs/InputBtn.svelte'
+	import Settings from '$components/inputs/Settings.svelte'
 	import { status } from '$lib/stores'
 	import { crossfade } from 'svelte/transition'
 	import { cubicOut } from 'svelte/easing'
 
 	let { vertical } = $props()
+
+	let showSettings = $state(false)
 
 	$inspect($status)
 
@@ -72,6 +75,9 @@
 			type: type
 		}))
 	}
+	const toggleSettings = () => {
+		showSettings = !showSettings
+	}
 </script>
 
 <div class="relative {vertical ? 'w-full max-w-80' : 'w-1/3'}">
@@ -100,9 +106,9 @@
 	{#if $status.type}
 		<div class="{vertical ? '' : 'absolute top-1/2 -translate-y-1/2 left-0'} {vertical ? 'w-full max-w-80' : 'w-full'} bg-gray-ultralight border-2 rounded-2xl p-4 h-fit" 
 		style="border: {$status.type ? `2px solid ${hexColors[$status.type]}` : '2px dashed #E5E5E5'}">
-			<h3 class="font-semibold text-sm mb-4" style="color: {$status.type ? hexColors[$status.type] : '#000'}">
+			<h3 class="font-semibold text-sm mb-4 flex items-center justify-between" style="color: {$status.type ? hexColors[$status.type] : '#000'}">
 				{#if $status.type === 'llm'}
-					Generic Prompt
+					Generic Prompt <span><button onclick={toggleSettings} class="ml-2 bg-white p-1 h-6 aspect-square rounded-full disabled:opacity-30 disabled:cursor-not-allowed" disabled={($status.input && !$status.output)}><img src="/assets/gear.svg" alt="gear" class="w-4 h-4"></button></span>
 				{:else if $status.type === 'image'}
 					Image Generation Prompt
 				{:else if $status.type === 'rembg'}
@@ -140,5 +146,8 @@
 				</div>
 			</div>
 		</div>
+	{/if}
+	{#if showSettings}
+		<Settings closeSettings={() => showSettings = false} />
 	{/if}
 </div>
