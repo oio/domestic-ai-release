@@ -1,5 +1,6 @@
 import aiohttp
 import dotenv
+import json
 import logging
 from pydantic import BaseModel
 import random
@@ -88,10 +89,32 @@ async def rembg(request):
 
 async def roby(request): 
 	prompt = request.prompt
-	system_prompt = request.system_prompt
+	settings = json.load(open("settings.json"))
+	system_prompt = settings.get("system_prompt")
+	length = settings.get("length")
+	temperature = settings.get("temperature")
 	logger.info(f"Prompt: {prompt}\nSystem prompt: {system_prompt}")
 	answer = await utils.query_llm(prompt, system_prompt)
 	return {"result": answer}
+
+async def settings_get(request):
+	settings = json.load(open("settings.json"))
+	return {"result": settings}
+
+async def settings_update(request):
+	logger.info(f"Updating settings: {request}")
+	settings = json.load(open("settings.json"))
+	if hasattr(request, 'system_prompt'):
+		logger.info(f"Updating system prompt: {request.system_prompt}")
+		settings['system_prompt'] = request.system_prompt
+	"""if hasattr(request, 'length'):
+		logger.info(f"Updating length: {request.length}")
+		settings['length'] = request.length 
+	if hasattr(request, 'temperature'):
+		logger.info(f"Updating temperature: {request.temperature}")
+		settings['temperature'] = request.temperature"""
+	json.dump(settings, open("settings.json", "w"), indent="\t")
+	return {"result": "settings updated"}
 
 async def thanks(request):
 	return {"result": "you are welcome"}
