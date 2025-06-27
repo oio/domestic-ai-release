@@ -8,10 +8,12 @@
 	import { status } from '$lib/stores'
 	import { crossfade } from 'svelte/transition'
 	import { cubicOut } from 'svelte/easing'
+	import { tick } from 'svelte'
 
 	let { vertical } = $props()
 
-	let showSettings = $state(false)
+	let showSettings = $state(false), 
+		settingName = $state(null)
 
 	$inspect($status)
 
@@ -75,8 +77,13 @@
 			type: type
 		}))
 	}
-	const toggleSettings = () => {
+	const toggleSettings = async (newSettingName) => {
+		settingName = newSettingName
+		await tick()
 		showSettings = !showSettings
+		if (!showSettings) {
+			settingName = null
+		}
 	}
 </script>
 
@@ -108,9 +115,9 @@
 		style="border: {$status.type ? `2px solid ${hexColors[$status.type]}` : '2px dashed #E5E5E5'}">
 			<h3 class="font-semibold text-sm mb-4 flex items-center justify-between" style="color: {$status.type ? hexColors[$status.type] : '#000'}">
 				{#if $status.type === 'llm'}
-					Generic Prompt <span><button onclick={toggleSettings} class="ml-2 bg-white p-1 h-6 aspect-square rounded-full disabled:opacity-30 disabled:cursor-not-allowed" disabled={($status.input && !$status.output)}><img src="/assets/gear.svg" alt="gear" class="w-4 h-4"></button></span>
+					Generic Prompt <span><button onclick={() => toggleSettings('system_prompt')} class="ml-2 bg-white p-1 h-6 aspect-square rounded-full disabled:opacity-30 disabled:cursor-not-allowed" disabled={($status.input && !$status.output)}><img src="/assets/gear.svg" alt="gear" class="w-4 h-4"></button></span>
 				{:else if $status.type === 'image'}
-					Image Generation Prompt
+					Image Generation Prompt <span><button onclick={() => toggleSettings('style_prompt')} class="ml-2 bg-white p-1 h-6 aspect-square rounded-full disabled:opacity-30 disabled:cursor-not-allowed" disabled={($status.input && !$status.output)}><img src="/assets/gear.svg" alt="gear" class="w-4 h-4"></button></span>
 				{:else if $status.type === 'rembg'}
 					Background Removal Prompt
 				{/if}
@@ -126,15 +133,6 @@
 			{/if}
 		</div>
 	{/if}
-	<!-- {#if $status.type}
-		<button onclick={backToChoice} 
-				disabled={$status.input && !$status.output}
-				class="{vertical ? 'absolute top-1/2 -translate-y-1/2 -left-10' : 'absolute top-1/2 -translate-y-1/2 -left-10'} p-2 bg-white disabled:bg-gray-ultralight rounded-full shadow-lg hover:shadow-xl transition-shadow duration-200"
-				in:receive={{ key: 'morph-element' }}
-				out:send={{ key: 'morph-element' }}>
-			<img src="/assets/home.svg" alt="home" class="w-4 h-4" />
-		</button>
-	{/if} -->
 	{#if $status.type == null} 
 		<div class="{vertical ? '' : 'absolute top-1/2 -translate-y-1/2 left-0'}" in:receive={{ key: 'morph-element' }} out:send={{ key: 'morph-element' }}>
 			<div class=" bg-gray-ultralight border-2 rounded-2xl p-4 h-fit" 
@@ -148,6 +146,6 @@
 		</div>
 	{/if}
 	{#if showSettings}
-		<Settings closeSettings={() => showSettings = false} />
+		<Settings closeSettings={toggleSettings} settingName={settingName} />
 	{/if}
 </div>
