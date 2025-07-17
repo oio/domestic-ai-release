@@ -86,7 +86,7 @@
 }} class='relative'>
 	
 	<!-- File Upload Area -->
-	<div class="mb-4">
+	<div class="mb-4 relative">
 		<div 
 			class="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center transition-colors duration-200 cursor-pointer hover:border-gray-400 {isDragging ? 'border-blue-400 bg-blue-50' : ''} {disabled ? 'bg-gray-dark' : 'bg-white'}"
 			ondragover={handleDragOver}
@@ -105,7 +105,7 @@
 					bind:value={url}
 					type="url" 
 					placeholder="paste a url" 
-					class="w-full p-2 border border-gray-300 rounded mt-2 {disabled ? 'bg-gray-dark' : 'bg-white'}"
+					class="w-full p-2 border border-gray-300 rounded my-2 {disabled ? 'bg-gray-dark' : 'bg-white'}"
 					onclick={e => e.stopPropagation()}
 					disabled={disabled}
 				/>
@@ -119,6 +119,14 @@
 			onchange={handleFileSelect}
 			class="hidden"
 		/>
+
+		<button 
+				type="submit" 
+				class="absolute bottom-3 right-2 bg-black/66 text-white p-1 aspect-square rounded-full disabled:opacity-30 disabled:cursor-not-allowed" 
+				disabled={disabled}
+			>
+				<img src="/assets/arrow.svg" alt="arrow" class="w-4 h-4">
+			</button>
 	</div>
 
 	<!-- Display uploaded file -->
@@ -139,7 +147,7 @@
 	{/if}
 
 	<!-- Submit Button -->
-	<div class="relative">
+	<!-- <div class="relative">
 		<button 
 			type="submit" 
 			class="absolute bottom-3 right-2 bg-black/66 text-white p-1 aspect-square rounded-full disabled:opacity-30 disabled:cursor-not-allowed" 
@@ -147,5 +155,5 @@
 		>
 			<img src="/assets/arrow.svg" alt="arrow" class="w-4 h-4">
 		</button>
-	</div>
+	</div> -->
 </form>

@@ -48,7 +48,7 @@
 			<div class="w-full mb-4" style="height: {padHeight}px;"></div>
 		{/if}
 	<div in:fade={{duration: 300}} out:fade={{duration: 100}} class="w-full h-full">
-		<div class="w-full h-full bg-gray-ultralight border-2 rounded-2xl p-4 text-sm" style="border: 2px solid {hexColors[$status.type]}">
+		<div class="w-full h-full bg-gray-ultralight border-2 rounded-2xl p-4 text-sm flex flex-col" style="border: 2px solid {hexColors[$status.type]}">
 			<h3 class="font-semibold mb-4 text-sm" style="color: {$status.type ? hexColors[$status.type] : '#000'}">Result</h3>
 
 			{#if $status.error}
