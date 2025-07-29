@@ -13,7 +13,7 @@ from typing import Dict, List, Optional, Set
 dotenv.load_dotenv()
 logger = logging.getLogger('domestic-ai')
 
-STARTUP_TIMEOUT = 60
+STARTUP_TIMEOUT = 10
 DOMESTIC_AI_PATH = os.environ['DOMESTIC_AI_PATH']
 API_HOST = "0.0.0.0"
 API_PORT = 8000
