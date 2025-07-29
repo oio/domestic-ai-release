@@ -11,7 +11,7 @@ import traceback
 from typing import Dict, List, Optional, Set
 
 dotenv.load_dotenv()
-logger = logging.getLogger('discord')
+logger = logging.getLogger('domestic-ai')
 
 STARTUP_TIMEOUT = 60
 DOMESTIC_AI_PATH = os.environ['DOMESTIC_AI_PATH']

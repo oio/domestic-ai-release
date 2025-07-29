@@ -33,7 +33,7 @@ async def initialize_services():
 	
 	try:
 		logger.info("Opening browser to http://localhost:8000")
-		webbrowser.open("http://localhost:8000")
+		webbrowser.open("http://localhost:5173")
 	except Exception as e:
 		logger.error(f"Failed to open browser: {e}")
 	
