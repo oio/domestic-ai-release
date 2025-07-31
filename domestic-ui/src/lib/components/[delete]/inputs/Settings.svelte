@@ -1,4 +1,4 @@
-<script>
+<!-- <script>
 	import { fade } from 'svelte/transition'
 	import { getSettings, setSettings } from '$lib'
 	import { onMount } from 'svelte'
@@ -38,4 +38,4 @@
 			{/if}
 		</div>
 	{/if}
-</div>
+</div> -->

@@ -1,4 +1,4 @@
-<script>
+<!-- <script>
 	import Input from '$components/Input.svelte'
 	import Output from '$components/Output.svelte'
 	import Center from '$components/Center.svelte'
@@ -27,4 +27,4 @@
 	<Center visible={$status.input} loading={$status.input && !$status.output} vertical={isVertical} />
 	<Connection visible={$status.output} vertical={isVertical} loading={!$status.output} />
 	<Output visible={$status.output} vertical={isVertical} />
-</div>
+</div> -->

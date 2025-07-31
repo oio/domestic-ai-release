@@ -1,4 +1,4 @@
-<script>
+<!-- <script>
 	import Arrow from '$components/assets/Arrow.svelte'
 	import { colors } from '$lib'
 	let { type, title, description, onClick } = $props()
@@ -17,4 +17,4 @@
 	<div class='bg-white rounded-full p-1'>
 		<Arrow bgColor='black' size={16} />
 	</div>
-</button>
+</button> -->

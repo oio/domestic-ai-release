@@ -1,4 +1,4 @@
-<script>
+<!-- <script>
 	import { status } from '$lib/stores'
 	let { handleSubmit } = $props()
 
@@ -84,8 +84,6 @@
 	//handleSubmit({image_url: url, image_b64: b64})
 	handleSubmit({image_url: url ? url : b64, is_b64: b64 ? true : false})
 }} class='relative'>
-	
-	<!-- File Upload Area -->
 	<div class="mb-4 relative">
 		<div 
 			class="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center transition-colors duration-200 cursor-pointer hover:border-gray-400 {isDragging ? 'border-blue-400 bg-blue-50' : ''} {disabled ? 'bg-gray-dark' : 'bg-white'}"
@@ -128,8 +126,6 @@
 				<img src="/assets/arrow.svg" alt="arrow" class="w-4 h-4">
 			</button>
 	</div>
-
-	<!-- Display uploaded file -->
 	{#if uploadedFile}
 		<div class="mb-4">
 			<div class="text-sm font-medium mb-2">Uploaded file:</div>
@@ -145,15 +141,4 @@
 			</div>
 		</div>
 	{/if}
-
-	<!-- Submit Button -->
-	<!-- <div class="relative">
-		<button 
-			type="submit" 
-			class="absolute bottom-3 right-2 bg-black/66 text-white p-1 aspect-square rounded-full disabled:opacity-30 disabled:cursor-not-allowed" 
-			disabled={disabled}
-		>
-			<img src="/assets/arrow.svg" alt="arrow" class="w-4 h-4">
-		</button>
-	</div> -->
-</form>
+</form> -->

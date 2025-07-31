@@ -1,4 +1,4 @@
-<script>
+<!-- <script>
 	let { output } = $props()
 
 	let isGlowing = $state(false)
@@ -34,3 +34,4 @@
 		}
 	}
 </style>
+ -->

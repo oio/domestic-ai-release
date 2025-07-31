@@ -1,5 +1,6 @@
 <script>
-	import Flux from '$components/Flux.svelte'
+	/* import Flux from '$components/[delete]/Flux.svelte' */
+	import Flow from '$components/Flow.svelte'
 	import { onMount } from 'svelte'
 	import { status } from '$lib/stores'
 
@@ -12,6 +13,6 @@
 		console.log(data)
 	}) */
 </script>
-<section class="w-full h-full ">
-	<Flux />
+<section class="w-full h-full flex items-center justify-center">
+	<Flow />
 </section>

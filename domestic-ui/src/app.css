@@ -1,26 +1,40 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600&display=swap');
 @import 'tailwindcss';
 
+@font-face {
+	font-family: 'Monosten';
+	src: url('/fonts/monosten-var.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap; /* Optional: improves loading performance */
+  }
+
 @theme {
 	--font-outfit: 'Outfit', sans-serif;
+	--font-monosten: 'Monosten', sans-serif;
 	--color-oio-blue: #4870FF;
 	--color-oio-red: #FF857B;
 	--color-oio-violet: #9F86FF;
-	--color-gray-dark: #E6E6E6;
-	--color-gray-light: #E5E5E5;
+	--color-gray-dark: #19191A;
+	--color-gray-light: #323235;
 	--color-gray-ultralight: #F5F5F5;
+	--color-oio-cyan: #77E7FF;
 }
 
-body {
+/* body {
 	background-image: radial-gradient(circle, #E6E6E6 1px, transparent 1px); background-size: 1rem 1rem;
-}
+} */
 
 body {
-	@apply px-12 py-4 w-screen h-screen max-w-screen max-h-screen flex flex-col bg-gray-ultralight;
+	@apply px-12 py-4 w-screen h-screen max-w-screen max-h-screen flex flex-col bg-black text-white;
 }
 
 h1, h2, h3, h4, h5, h6 {
-	@apply font-outfit font-semibold;
+	@apply font-semibold font-monosten uppercase;
+}
+
+h4 {
+	@apply text-sm;
 }
 
 a {
@@ -32,17 +46,25 @@ button {
 }
 
 input, textarea {
-	@apply text-sm;
+	@apply w-full text-sm font-monosten;
 }
 
 label {
-	@apply text-xs ml-1 mt-2;
+	@apply w-full text-xs ml-1 mt-2 font-monosten;
 }
 
 input {
-	@apply px-2 py-1 rounded-lg bg-white;
+	@apply w-full px-2 py-1 rounded-lg bg-gray-light text-white font-monosten;
 }
 
 textarea {
-	@apply resize-none rounded-lg p-2 focus:outline-none bg-white;
+	@apply w-full resize-none rounded-lg p-2 focus:outline-none bg-gray-light text-white font-monosten;
+}
+
+.input-output {
+	@apply w-full bg-black rounded-xl p-4;
+}
+
+.input-title {
+	@apply mb-2;
 }

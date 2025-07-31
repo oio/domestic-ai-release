@@ -1,34 +1,5 @@
 import { status } from '$lib/stores'
 
-export const colors = {
-	llm: 'oio-blue',
-	image: 'oio-red',
-	rembg: 'oio-violet'
-}
-
-export const bgColors = {
-	llm: 'bg-oio-blue',
-	image: 'bg-oio-red',
-	rembg: 'bg-oio-violet'
-}
-
-export const hexColors = {
-	llm: '#4870FF',
-	image: '#FF857B',
-	rembg: '#9F86FF'
-}
-export const borderColors = {
-	llm: 'border-oio-blue',
-	image: 'border-oio-blue',
-	rembg: 'border-oio-blue', 
-}
-
-export const modelNames = {
-	llm: ['Llama 3.2', '3B'],
-	image: ['MFlux'],
-	rembg: ['Rembg']
-}
-
 export const callLLM = async (prompt) => {
 	try {
 		const response = await fetch('http://localhost:8000/api/roby', {

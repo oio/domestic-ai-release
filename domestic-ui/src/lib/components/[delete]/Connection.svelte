@@ -1,4 +1,4 @@
-<script>
+<!-- <script>
 	import { hexColors } from '$lib'
 	import { status } from '$lib/stores'
 	let { vertical, loading, visible } = $props()
@@ -39,4 +39,4 @@
 			stroke-dashoffset: -100;
 		}
 	}
-</style>
+</style> -->

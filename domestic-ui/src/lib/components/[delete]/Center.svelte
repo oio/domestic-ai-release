@@ -1,4 +1,4 @@
-<script>
+<!-- <script>
 	import { borderColors, colors, hexColors, modelNames } from '$lib'
 	import { status } from '$lib/stores'
 	import { fade } from 'svelte/transition'
@@ -54,4 +54,4 @@
 		100% { transform: scale(1); }
 	}
 
-</style>
+</style> -->
