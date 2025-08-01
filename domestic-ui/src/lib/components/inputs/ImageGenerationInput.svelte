@@ -18,10 +18,7 @@
 		} else {
 		status.update(s => ({
 			...s,
-			input: {
-				prompt: prompt,
-				style_prompt: stylePrompt
-				}
+			input:  {prompt: prompt + (stylePrompt ? ' ' + stylePrompt : '')}
 			}))
 		}
 	})

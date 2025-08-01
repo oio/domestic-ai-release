@@ -1,18 +1,18 @@
 import { status } from '$lib/stores'
 
-export const callLLM = async (prompt) => {
+export const callLLM = async (data) => {
+	console.log('callLLM', data)
 	try {
 		const response = await fetch('http://localhost:8000/api/roby', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
 			},
-			body: JSON.stringify({ prompt })
-		});
-
+			body: JSON.stringify(data)
+		})
 		if (response.ok) {
-			let result = await response.json();
-			console.log(result);
+			let result = await response.json()
+			console.log(result)
 			status.update(s => ({
 				...s,
 				output: result.result
@@ -22,14 +22,14 @@ export const callLLM = async (prompt) => {
 			status.update(s => ({
 				...s,
 				error: 'API request failed'
-			}));
+			}))
 		}
 	} catch (error) {
-		console.error(error);
+		console.error(error)
 		status.update(s => ({
 			...s,
 			error: error.message
-		}));
+		}))
 	}
 }
 
@@ -40,14 +40,14 @@ export const callImagen = async (prompt) => {
 			headers: {
 				'Content-Type': 'application/json'
 			},
-			body: JSON.stringify({ prompt })
+			body: JSON.stringify({prompt})
 		});
 		if (response.ok) {
 			let result = await response.json();
 			console.log(result);
 			status.update(s => ({
 				...s,
-				output: result.result.b64
+				output: 'data:image/png;base64,' + result.result.b64
 			}));
 		} else {
 			console.error(response);
@@ -90,6 +90,37 @@ export const callBgRemoval = async (data) => {
 		}));
 	}
 }
+
+export const callPokemon = async (prompt) => {
+
+}
+
+export const callHaiku = async (about) => {
+	try {
+		const response = await fetch('http://localhost:8000/api/haiku', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({about})
+		})
+		if (response.ok) {
+			let result = await response.json()
+			console.log(result)
+			status.update(s => ({
+				...s,
+				output: result.result
+			}))
+		}
+	} catch (error) {
+		console.error(error);
+		status.update(s => ({
+			...s,
+			error: error.message
+		}))
+	}
+}
+
 
 export const getSettings = async () => {
 	const response = await fetch('http://localhost:8000/api/settings_get', {

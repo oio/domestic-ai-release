@@ -88,9 +88,13 @@ async def rembg(request):
 	return {"result": image_base64}
 
 async def roby(request): 
+	logger.info(f"Request: {request}")
 	prompt = request.prompt
 	settings = json.load(open("settings.json"))
 	system_prompt = settings.get("system_prompt")
+	request_system_prompt = request.system_prompt
+	if request_system_prompt:
+		system_prompt = request_system_prompt
 	length = settings.get("length")
 	temperature = settings.get("temperature")
 	logger.info(f"Prompt: {prompt}\nSystem prompt: {system_prompt}")

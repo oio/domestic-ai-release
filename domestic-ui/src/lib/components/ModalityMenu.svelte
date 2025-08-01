@@ -14,6 +14,14 @@
 		{
 			name: 'background-removal',
 			label: 'Background Removal'
+		}, 
+		{
+			name: 'pokemon',
+			label: 'Pokemon'
+		}, 
+		{
+			name: 'haiku',
+			label: 'Haiku'
 		}
 	]
 
