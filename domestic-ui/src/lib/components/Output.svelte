@@ -1,21 +1,21 @@
 <script>
 	import { status } from '$lib/stores'
 	import { slide } from 'svelte/transition'
-
+	import GenericPromptOutput from '$components/outputs/GenericPromptOutput.svelte'
+	import ImageGenerationOutput from '$components/outputs/ImageGenerationOutput.svelte'
+	import BackgroundRemovalOutput from '$components/outputs/BackgroundRemovalOutput.svelte'
 	let { visible = false } = $props()
 </script>
 
 {#if visible}
 	<div class="input-output" transition:slide>
+		<h5 class="text-sm font-monosten mb-2">Result</h5>
 		{#if $status.modality == 'generic-prompt'}
-			<div class="output-generic-prompt">
-				<h4>Generic Prompt</h4>
-				<p>{$status.output}</p>
-			</div>
+			<GenericPromptOutput />
 		{:else if $status.modality == 'image-generation'}
-			<div class="output-image-generation">
-				<h4>Image Generation</h4>
-			</div>
+			<ImageGenerationOutput />
+		{:else if $status.modality == 'background-removal'}
+			<BackgroundRemovalOutput />
 		{/if}
 	</div>
 {/if}

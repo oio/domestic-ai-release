@@ -10,10 +10,10 @@ export async function POST({ request }) {
 				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify({ image_url, is_b64 })
-		});
+		})
 
-		const data = await response.json();
-		return json(data);
+		const data = await response.json()
+		return json(data)
 	/* } catch (error) {
 		return json({ error: error.message }, { status: 500 });
 	} */

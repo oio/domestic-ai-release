@@ -110,6 +110,9 @@ async def settings_update(request):
 	if hasattr(request, 'style_prompt'):
 		logger.info(f"Updating style prompt: {request.style_prompt}")
 		settings['style_prompt'] = request.style_prompt
+	if hasattr(request, 'name'):
+		logger.info(f"Updating name: {request.name}")
+		settings['name'] = request.name
 
 	json.dump(settings, open("settings.json", "w"), indent="\t")
 	return {"result": "settings updated"}

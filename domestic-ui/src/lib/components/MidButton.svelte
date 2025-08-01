@@ -10,7 +10,7 @@
 		} else if (name == 'image-generation') {
 			callImagen($status.input.prompt)
 		} else if (name == 'background-removal') {
-			callBgRemoval($status.input.image)
+			callBgRemoval($status.input)
 		}
 	}
 </script>

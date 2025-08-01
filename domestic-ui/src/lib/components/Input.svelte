@@ -1,6 +1,7 @@
 <script>
+	import { slide } from 'svelte/transition'
 	import { status } from '$lib/stores'
 </script>
-<div class="input-output">
+<div transition:slide class="w-full">
 	<slot />
 </div>
