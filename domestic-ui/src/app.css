@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 @import 'tailwindcss';
 
 @font-face {
@@ -7,11 +7,20 @@
 	font-weight: normal;
 	font-style: normal;
 	font-display: swap; /* Optional: improves loading performance */
-  }
+}
+
+@font-face {
+	font-family: 'Odd Mono';
+	src: url('/fonts/odd-mono.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
 
 @theme {
-	--font-outfit: 'Outfit', sans-serif;
+	--font-work: 'Work Sans', sans-serif;
 	--font-monosten: 'Monosten', sans-serif;
+	--font-odd: 'Odd Mono', sans-serif;
 	--color-oio-blue: #4870FF;
 	--color-oio-red: #FF857B;
 	--color-oio-violet: #9F86FF;
@@ -29,12 +38,20 @@ body {
 	@apply px-12 py-4 w-screen h-screen max-w-screen max-h-screen flex flex-col bg-black text-white;
 }
 
+h1 {
+	@apply font-odd text-4xl;
+}
+
 h1, h2, h3, h4, h5, h6 {
-	@apply font-semibold font-monosten uppercase;
+	@apply font-semibold uppercase;
 }
 
 h4 {
 	@apply text-sm;
+}
+
+p {
+	@apply font-work;
 }
 
 a {

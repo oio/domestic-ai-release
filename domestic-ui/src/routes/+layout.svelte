@@ -6,8 +6,8 @@
 </script>
 
 <header class="pb-2">
-	<h1 class='text-center mb-8'><span class="text-oio-cyan">oio</span> Domestic AI <span class="text-gray-light">1.0</span></h1>
-	<p class="text-center max-w-2xl mx-auto text-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut.</p>
+	<h1 class='text-center mb-8'>OPEN ROBY</h1>
+	<p class="text-center max-w-2xl mx-auto text-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad mini.</p>
 </header>
 <main class="flex-1 w-full max-w-7xl mx-auto mb-2">
 	<div class="w-full h-full">

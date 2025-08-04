@@ -51,6 +51,7 @@ all_routes = [
 	Route("joke", "POST", callbacks.joke, None, description="🤡 Tell me a joke", preview="🤡 /joke"),
 	Route("ping", "POST", callbacks.ping, None, description="Ping"),
 	Route("pong", "POST", callbacks.error, None, description="Pong"),
+	Route("pokemon", "POST", callbacks.pokemon, None, description="🦑 Pokemon", preview="🦑 /pokemon"),
 	Route(f"{prefix.strip()}", "POST", callbacks.roby, PromptRequest, description="💬 Ask roby", preview=f"💬 /{prefix.strip()}"),
 	Route("rembg", "POST", callbacks.rembg, RemoveBgRequest, description="🖼️ Remove background", preview="🖼️ /removebg"),
 	Route("settings_get", "POST", callbacks.settings_get, None, description="🔍 Get settings", preview="🔍 /settings_get"),

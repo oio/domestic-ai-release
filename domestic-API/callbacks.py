@@ -81,6 +81,21 @@ async def joke(request):
 async def ping(request):
 	return {"result": "pong"}
 
+async def pokemon(request):
+	async with aiohttp.ClientSession() as session:
+		pokemon_id = random.randint(1, 898)
+		url = f"https://pokeapi.co/api/v2/pokemon/{pokemon_id}"
+		async with session.get(url) as response:
+			data = await response.json()
+			pokemon_name = data['name'].capitalize()
+	
+	if random.random() < 0.95:
+		image = f"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{pokemon_id}.png"
+		return {"result": {"msg": f"🌱 a wild {pokemon_name} appeared 🌱", "image": image, "id": f"pokémon id: {pokemon_id}"}}
+	else:
+		image = f"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/{pokemon_id}.png"
+		return {"result": {"msg": f"✨ A SHINY {pokemon_name.upper()} APPEARED ✨", "image": image, "id": f"pokémon id: {pokemon_id}"}}
+
 async def rembg(request): 
 	image_url = request.image_url
 	is_b64 = request.is_b64

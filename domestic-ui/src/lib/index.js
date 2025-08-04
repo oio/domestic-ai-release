@@ -91,8 +91,33 @@ export const callBgRemoval = async (data) => {
 	}
 }
 
-export const callPokemon = async (prompt) => {
-
+export const callPokemon = async () => {
+	/* try { */
+		const response = await fetch('http://localhost:8000/api/pokemon', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({})
+		})
+		/* if (response.ok) { */
+			let result = await response.json()
+			console.log(result)
+			status.update(s => ({
+				...s,
+				output: {
+					msg: result.result.msg,
+					image: result.result.image
+				}
+			}))
+	/*}
+	} catch (error) {
+		console.error(error)\
+		status.update(s => ({
+			...s,
+			error: error.message
+		}))
+	} */
 }
 
 export const callHaiku = async (about) => {
