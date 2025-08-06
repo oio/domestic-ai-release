@@ -92,7 +92,7 @@ export const callBgRemoval = async (data) => {
 }
 
 export const callPokemon = async () => {
-	/* try { */
+	try {
 		const response = await fetch('http://localhost:8000/api/pokemon', {
 			method: 'POST',
 			headers: {
@@ -100,7 +100,7 @@ export const callPokemon = async () => {
 			},
 			body: JSON.stringify({})
 		})
-		/* if (response.ok) { */
+		if (response.ok) {
 			let result = await response.json()
 			console.log(result)
 			status.update(s => ({
@@ -110,14 +110,14 @@ export const callPokemon = async () => {
 					image: result.result.image
 				}
 			}))
-	/*}
+		}
 	} catch (error) {
-		console.error(error)\
+		console.error(error)
 		status.update(s => ({
 			...s,
 			error: error.message
 		}))
-	} */
+	} 
 }
 
 export const callHaiku = async (about) => {
@@ -146,7 +146,6 @@ export const callHaiku = async (about) => {
 	}
 }
 
-
 export const getSettings = async () => {
 	const response = await fetch('http://localhost:8000/api/settings_get', {
 		method: 'POST',
@@ -156,10 +155,10 @@ export const getSettings = async () => {
 		body: JSON.stringify({})
 	});
 	if (response.ok) {
-		let result = await response.json();
-		return result.result;
+		let result = await response.json()
+		return result.result
 	} else {
-		console.error(response);
+		console.error(response)
 		return null;
 	}
 }
@@ -171,12 +170,12 @@ export const setSettings = async (settings) => {
 			'Content-Type': 'application/json'
 		},
 		body: JSON.stringify(settings)
-	});
+	})
 	if (response.ok) {
-		let result = await response.json();
-		return result.result;
+		let result = await response.json()
+		return result.result
 	} else {
-		console.error(response);
-		return null;
+		console.error(response)
+		return null
 	}
 }

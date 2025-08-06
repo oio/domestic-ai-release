@@ -9,7 +9,6 @@
 	import { status } from '$lib/stores'
 </script>
 <div transition:slide class="w-full">
-	<!-- <slot /> -->
 	<div class="{$status.modality != 'pokemon' ? 'input-output w-full mb-4' : ''}  ">
 		{#if $status.modality == 'generic-prompt'}
 			<GenericPromptInput />
@@ -23,7 +22,7 @@
 			<PokemonInput />
 		{/if}
 	</div>
-	<MidButton disabled={$status.input == null} name={$status.modality || 'generate'} />
+	<MidButton name={$status.modality || 'generate'} />
 	<div class="w-full">
 		<!-- model data -->
 	</div>

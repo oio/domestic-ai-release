@@ -35,19 +35,19 @@
 		<button onclick={(e) => { e.stopPropagation(); showSettings = !showSettings}} class="flex items-center gap-6">Settings <span class="w-6 h-6 flex items-center justify-center bg-gray-light rounded-full"><img src="/assets/menu-toggle.svg" alt="settings" class="w-4 h-4 {showSettings ? 'rotate-180' : ''} transition-all duration-400"/></span></button>
 		{#if showSettings}
 			<div transition:slide class="w-full">
-					<div class='field'>
+					<div class='settings-field'>
 						<label for="name">Name</label>
 						<input type="text" bind:value={name} />
 					</div>
-					<div class='field'>
+					<div class='settings-field'>
 						<label for="system-prompt">System Prompt</label>
 						<textarea type="text" class="h-24" bind:value={systemPrompt} />
-						<p class='info'>Defines how Roby will handle textual conversation</p>
+						<p class='settings-info'>Defines how Roby will handle textual conversation</p>
 					</div>
-					<div class='field'>
+					<div class='settings-field'>
 						<label for="image-style">Image Style</label>
 						<textarea type="text" bind:value={imageStyle} />
-						<p class='info'>Defines how Roby will generate images</p>
+						<p class='settings-info'>Defines how Roby will generate images</p>
 					</div>
 				<div class="w-full h-1 border-b border-gray-ultralight"></div>
 				<div class='field w-full flex justify-center items-center'>
@@ -68,14 +68,6 @@
 
 	.settings-container.open {
 		width: 300px;
-	}
-
-	.field {
-		@apply my-3;
-	}
-
-	.info {
-		@apply text-gray-ultralight text-xs;
 	}
 
 </style>

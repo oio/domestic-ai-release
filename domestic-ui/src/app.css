@@ -25,11 +25,16 @@
 	--color-oio-red: #FF857B;
 	--color-oio-violet: #9F86FF;
 	--color-gray-dark: #19191A;
-	--color-gray-light: #323235;
-	--color-gray-ultralight: #F5F5F5;
+	--color-gray-light: #3E3E42;
+	--color-gray-ultralight: #C4C4C4;
 	--color-oio-cyan: #77E7FF;
+	--animate-gradient: gradient 2s ease-in-out infinite;
 }
 
+@keyframes gradient {
+	0% { background-position: -200% 0; }
+	100% { background-position: 200% 0; }
+}
 /* body {
 	background-image: radial-gradient(circle, #E6E6E6 1px, transparent 1px); background-size: 1rem 1rem;
 } */
@@ -63,7 +68,7 @@ button {
 }
 
 input, textarea {
-	@apply w-full text-sm ;
+	@apply w-full text-sm font-work;
 }
 
 label {
@@ -84,4 +89,12 @@ textarea {
 
 .input-title {
 	@apply mb-2;
+}
+
+.settings-field {
+	@apply my-3;
+}
+
+.settings-info {
+	@apply text-gray-ultralight text-xs;
 }

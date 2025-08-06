@@ -4,7 +4,7 @@
 	import { status } from '$lib/stores'
 	import { onMount } from 'svelte'
 
-	let prompt = $state(''), 
+	let prompt = $state('a frog with a blue wizard hat with stars'), 
 		stylePrompt = $state(''),
 		showAdvancedSettings = $state(false)
 

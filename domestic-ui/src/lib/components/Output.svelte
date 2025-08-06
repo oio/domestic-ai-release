@@ -7,7 +7,12 @@
 	let { visible = false } = $props()
 
 	$effect(() => {
-		$inspect($status.output)
+		if ($status.output && $status.loading) {
+			status.update(s => ({
+				...s,
+				loading: false
+			}))
+		}
 	})
 </script>
 

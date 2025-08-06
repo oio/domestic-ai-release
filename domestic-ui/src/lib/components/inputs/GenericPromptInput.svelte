@@ -16,11 +16,11 @@
 			}))
 			console.log('input is null')
 		} else {
-		status.update(s => ({
-			...s,
-			input: {
-				prompt: prompt,
-				system_prompt: systemPrompt
+			status.update(s => ({
+				...s,
+				input: {
+					prompt: prompt,
+					system_prompt: systemPrompt	
 				}
 			}))
 		}

@@ -1,19 +1,25 @@
 <script>
-	/* import Flux from '$components/[delete]/Flux.svelte' */
 	import Flow from '$components/Flow.svelte'
 	import Settings from '$components/Settings.svelte'
+	import WelcomeModal from '$components/WelcomeModal.svelte'
+	import { getSettings } from '$lib'
 	import { onMount } from 'svelte'
 	import { status } from '$lib/stores'
-	/* onMount(async () => {
-		const response = await fetch('/api/commands', {
-			method: 'POST',
-			body: JSON.stringify({ command: 'throw', inputs: { faces: 20 } })
-		})
-		const data = await response.json()
-		console.log(data)
-	}) */
+
+	onMount(async () => {
+		const settings = await getSettings()
+		status.update(s => ({
+			...s,
+			firstTime: settings.first_time
+		}))
+	})
+
 </script>
 <section class="w-full h-full flex items-center justify-center">
-	<Flow />
-	<Settings />
+	{#if $status.firstTime}
+		<WelcomeModal />
+	{:else}
+		<Flow />
+		<Settings />
+	{/if}
 </section>

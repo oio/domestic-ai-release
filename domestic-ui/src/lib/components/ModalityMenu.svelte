@@ -1,5 +1,5 @@
 <script>
-	import { slide } from 'svelte/transition'
+	import { slide, fade } from 'svelte/transition'
 	import { status } from '$lib/stores'
 
 	const modalities = [
@@ -48,7 +48,7 @@
 	}
 </script>
 
-<div transition:slide class="w-full flex flex-wrap items-start justify-start">
+<div class="w-full flex flex-wrap items-start justify-start">
 	{#each modalities as modality}
 		{#if modality.full}
 		<div class="w-full p-1">
@@ -83,3 +83,4 @@
 		{/if}
 	{/each}
 </div>
+

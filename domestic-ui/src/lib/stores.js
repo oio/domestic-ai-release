@@ -6,5 +6,7 @@ export const status = writable({
 	modality: null,
 	input: null,
 	output: null, 
-	error: null
+	error: null,
+	loading: false,
+	firstTime: true
 })

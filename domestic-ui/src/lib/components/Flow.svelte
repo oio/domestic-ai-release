@@ -3,6 +3,7 @@
 	import Output from '$components/Output.svelte'
 	import ModalityMenu from '$components/ModalityMenu.svelte'
 	import { status } from '$lib/stores.js'
+	import { fade } from 'svelte/transition'
 	import { onMount } from 'svelte'
 
 	let showMenu = $state(false)
@@ -17,7 +18,7 @@
 
 </script>
 
-<div class="w-full max-w-sm flex flex-col">
+<div in:fade={{ duration: 300, delay: 300 }} out:fade={{ duration: 200 }} class="w-full max-w-sm flex flex-col">
 	<div class="w-full flex items-center justify-center h-12 min-h-12">
 		{#if $status.modality}
 			<button onclick={() => modalityChoice(null)} class="bg-gray-light rounded-full p-2">

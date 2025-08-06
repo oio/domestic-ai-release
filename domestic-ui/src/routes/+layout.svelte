@@ -1,9 +1,19 @@
 <script>
-	import '../app.css';
-	import { status } from '$lib/stores';
+	import '../app.css'
+	import { getSettings } from '$lib';
+	import { fade } from 'svelte/transition'
+	import { status } from '$lib/stores'
 
-	let { children } = $props();
+	let { children } = $props()
 </script>
+
+<div class="w-screen h-screen fixed top-0 left-0 -z-10 bg-black">
+	{#if !$status.modality} 
+		<img transition:fade src="/screens/roby-idle.jpg" alt="background" class="w-full h-full object-cover">
+	{:else}
+		<img transition:fade src="/screens/roby-prompt.jpg" alt="background" class="w-full h-full object-cover">
+	{/if}
+</div>
 
 <header class="pb-2">
 	<h1 class='text-center mb-8'>OPEN ROBY</h1>

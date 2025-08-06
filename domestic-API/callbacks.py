@@ -120,7 +120,7 @@ async def settings_get(request):
 	settings = json.load(open("settings.json"))
 	return {"result": settings}
 
-async def settings_update(request):
+""" async def settings_update(request):
 	logger.info(f"Updating settings: {request}")
 	settings = json.load(open("settings.json"))
 	if hasattr(request, 'system_prompt'):
@@ -134,7 +134,24 @@ async def settings_update(request):
 		settings['name'] = request.name
 
 	json.dump(settings, open("settings.json", "w"), indent="\t")
-	return {"result": "settings updated"}
+	return {"result": "settings updated"} """
+
+async def settings_update(request):
+    logger.info(f"Updating settings: {request}")
+    
+    with open("settings.json") as f:
+        settings = json.load(f)
+    
+    for field in settings.keys():
+        if hasattr(request, field):
+            value = getattr(request, field)
+            logger.info(f"Updating {field}: {value}")
+            settings[field] = value
+    
+    with open("settings.json", "w") as f:
+        json.dump(settings, f, indent="\t")
+    
+    return {"result": "settings updated"}
 
 async def thanks(request):
 	return {"result": "you are welcome"}
