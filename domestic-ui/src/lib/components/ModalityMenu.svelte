@@ -48,26 +48,26 @@
 	}
 </script>
 
-<div class="w-full flex flex-wrap items-start justify-start">
+<div transition:slide class="w-full flex flex-wrap items-start justify-start">
 	{#each modalities as modality}
 		{#if modality.full}
-		<div class="w-full p-1">
-			<button onclick={() => modalityChoice(modality.name)} class="w-full bg-black rounded-lg p-2 py-4 flex flex-col items-start justify-start hover:bg-gray-dark transition-colors duration-300">
-				<div  class="">
-					<div class="text-left uppercase text-oio-cyan">
-						<p class="flex items-center gap-2">
-							{modality.emoji} {modality.label}
-						</p>
+			<div class="w-full p-1">
+				<button onclick={() => modalityChoice(modality.name)} class="w-full bg-gray-light hover:bg-gray-light/80 rounded-lg p-2 py-4 flex flex-col items-start justify-start transition-colors duration-300">
+					<div  class="">
+						<div class="text-left uppercase text-oio-cyan">
+							<p class="flex items-center gap-2">
+								{modality.emoji} {modality.label}
+							</p>
+						</div>
+						<div class="w-full text-left">
+							<p class="text-xs text-gray-ultralight">{modality.description}</p>
+						</div>
 					</div>
-					<div class="w-full text-left">
-						<p class="text-xs text-gray-ultralight">{modality.description}</p>
-					</div>
-				</div>
-			</button>
-		</div>
+				</button>
+			</div>
 		{:else}
 			<div class="w-1/2 p-1">
-				<button onclick={() => modalityChoice(modality.name)} class="w-full aspect-square bg-black rounded-lg p-2 flex flex-col items-start justify-start hover:bg-gray-dark transition-colors duration-300">
+				<button onclick={() => modalityChoice(modality.name)} class="w-full aspect-square bg-black hover:bg-[#0d0d0d] rounded-lg p-2 flex flex-col items-start justify-start transition-colors duration-300">
 					<div  class="">
 						<div class="text-left uppercase text-oio-cyan">
 							<p class="flex items-center gap-2">

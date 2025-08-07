@@ -61,11 +61,11 @@
 					</div>
 					<div class='settings-field'>
 						<label for="image-style">Image Style</label>
-						<textarea type="text" bind:value={imageStyle} />
+						<textarea type="text" class="h-14" bind:value={imageStyle} />
 						<p class='settings-info'>Defines how Roby will generate images</p>
 					</div>
 				<div class="w-full h-1 border-b border-gray-ultralight"></div>
-				<div class='field w-full flex justify-center items-center'>
+				<div class='settings-field w-full flex justify-center items-center'>
 					<button class='bg-black rounded-full p-2 text-red-500 text-xs'>Restore default settings</button>
 				</div>
 			</div>

@@ -19,14 +19,10 @@
 </script>
 
 <div in:fade={{ duration: 300, delay: 300 }} out:fade={{ duration: 200 }} class="w-full max-w-sm flex flex-col">
-	<div class="w-full flex items-center justify-center h-12 min-h-12">
-		{#if $status.modality}
-			<button onclick={() => modalityChoice(null)} class="bg-gray-light rounded-full p-2">
-				<img src="/assets/home.svg" alt="home" class="w-4 h-4" />
+	<div class="w-full flex flex-col items-center justify-center gap-4 p-6 rounded-xl bg-gray-dark { $status.modality ? 'border-2 border-oio-cyan' : '' } transition-all duration-300">
+		<button onclick={() => modalityChoice(null)} class="bg-gray-light rounded-full p-2">
+			<img src="/assets/home.svg" alt="home" class="w-4 h-4" />
 		</button>
-		{/if}
-	</div>
-	<div class="w-full flex flex-col items-center justify-center gap-4 p-4 rounded-xl bg-gray-light border-2 border-oio-cyan">
 		{#if $status.modality == null}
 			<ModalityMenu />
 		{:else}

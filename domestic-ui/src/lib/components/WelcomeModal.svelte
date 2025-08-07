@@ -9,6 +9,7 @@
 		systemPrompt = $state(''),
 		stylePrompt = $state(''),
 		nextDisabled = $derived((step == 0 && name.length > 0) || (step == 1 && systemPrompt.length > 0  || stylePrompt.length > 0) ? false : true)
+		
 
 	const changeName = async() => {
 		await setSettings({
@@ -28,8 +29,6 @@
 
 		await setSettings(settingsToUpdate)
 
-		const settings = await getSettings()
-
 		status.update(s => ({
 			...s,
 			firstTime: false
@@ -45,8 +44,22 @@
 		step += 1
 	}
 
+	const handleBack = async() => {
+		step -= 1
+	}
+
 	const handleSkip = async() => {
 		step += 1
+		if (step == 2) {
+			await setSettings({
+				first_time: false
+			})
+
+			status.update(s => ({
+				...s,
+				firstTime: false
+			}))
+		}
 	}
 
 	onMount(async() => {
@@ -70,6 +83,11 @@
 				<p class="text-xs text-gray-light">You can change it later</p>
 			</div>
 		{:else} 
+			{#if step > 0}
+				<div class="w-full">
+					<button onclick={handleBack} class="text-sm bg-gray-light rounded-full p-2"><img src="/assets/arrow.svg" alt="arrow" class="w-3 h-3 rotate-180" /></button>
+				</div>
+			{/if}
 			<div class="w-full">
 				<form onsubmit={handleNext}>
 					<div class='settings-field'>
