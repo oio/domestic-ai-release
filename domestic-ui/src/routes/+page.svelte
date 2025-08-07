@@ -6,11 +6,21 @@
 	import { onMount } from 'svelte'
 	import { status } from '$lib/stores'
 
+	$effect(async() => {
+		if ($status.firstTime) {
+			const settings = await getSettings()
+			console.log(1, settings)
+		} else {
+			const settings = await getSettings()
+			console.log(2, settings)
+		}
+	})
+
 	onMount(async () => {
 		const settings = await getSettings()
 		status.update(s => ({
 			...s,
-			firstTime: settings.first_time
+			firstTime: Boolean(settings.first_time)
 		}))
 	})
 

@@ -163,14 +163,19 @@ export const getSettings = async () => {
 	}
 }
 
-export const setSettings = async (settings) => {
+
+export const setSettings = async (newSettings) => {
+	const currentSettings = await getSettings()
+	const mergedSettings = { ...currentSettings, ...newSettings }
+
 	const response = await fetch('http://localhost:8000/api/settings_update', {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json'
 		},
-		body: JSON.stringify(settings)
+		body: JSON.stringify(mergedSettings)
 	})
+
 	if (response.ok) {
 		let result = await response.json()
 		return result.result

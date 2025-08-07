@@ -136,21 +136,45 @@ async def settings_get(request):
 	json.dump(settings, open("settings.json", "w"), indent="\t")
 	return {"result": "settings updated"} """
 
+""" async def settings_update(request):
+	logger.info(f"Updating settings: {request}")
+	
+	with open("settings.json") as f:
+		settings = json.load(f)
+	
+	# Convert request to dict if it isn't already
+	request_dict = request if isinstance(request, dict) else request.__dict__
+	
+	for field, value in request_dict.items():
+		if field in settings:
+			logger.info(f"Updating {field}: {value}")
+			settings[field] = value
+	
+	with open("settings.json", "w") as f:
+		json.dump(settings, f, indent="\t")
+	
+	return {"result": "settings updated"} """
+
 async def settings_update(request):
-    logger.info(f"Updating settings: {request}")
+    logger.info(f"Raw request: {request}")
+    logger.info(f"Request dict items: {list(request.items()) if hasattr(request, 'items') else 'No items method'}")
     
     with open("settings.json") as f:
         settings = json.load(f)
     
-    for field in settings.keys():
-        if hasattr(request, field):
-            value = getattr(request, field)
+    request_dict = request if isinstance(request, dict) else request.__dict__
+    logger.info(f"Request dict: {request_dict}")
+    
+    for field, value in request_dict.items():
+        logger.info(f"Checking field: {field}, exists in settings: {field in settings}")
+        if field in settings:
             logger.info(f"Updating {field}: {value}")
             settings[field] = value
     
     with open("settings.json", "w") as f:
         json.dump(settings, f, indent="\t")
     
+    logger.info(f"Final settings: {settings}")
     return {"result": "settings updated"}
 
 async def thanks(request):

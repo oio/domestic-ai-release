@@ -1,6 +1,5 @@
 <script>
 	import '../app.css'
-	import { getSettings } from '$lib';
 	import { fade } from 'svelte/transition'
 	import { status } from '$lib/stores'
 

@@ -10,30 +10,30 @@
 		stylePrompt = $state(''),
 		nextDisabled = $derived((step == 0 && name.length > 0) || (step == 1 && systemPrompt.length > 0  || stylePrompt.length > 0) ? false : true)
 
-	$effect(async() => {
-		if (step >= 2) {
-			await setSettings({
-				first_time: false
-			})
-		
-			status.update(s => ({
-				...s,
-				firstTime: false
-			}))
-		}
-	})
-
 	const changeName = async() => {
 		await setSettings({
 			name: name
 		})
+
+		const settings = await getSettings()
+		console.log(3, settings)
 	}
 
 	const changeSettings = async() => {
-		await setSettings({
+		const settingsToUpdate = {
 			system_prompt: systemPrompt,
-			style_prompt: stylePrompt
-		})
+			style_prompt: stylePrompt,
+			first_time: false
+		}
+
+		await setSettings(settingsToUpdate)
+
+		const settings = await getSettings()
+
+		status.update(s => ({
+			...s,
+			firstTime: false
+		}))
 	}
 		
 	const handleNext = async() => {

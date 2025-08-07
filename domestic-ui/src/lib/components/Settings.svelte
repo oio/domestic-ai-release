@@ -2,9 +2,10 @@
 	import { getSettings, setSettings } from '$lib'
 	import { slide } from 'svelte/transition'
 	import { status } from '$lib/stores'
-	import { onMount } from 'svelte'
+	import { onMount, tick } from 'svelte'
 	
 	let mounted = $state(false),
+		neverOpened = $state(true),
 		showSettings = $state(false), 
 		name = $state(''),
 		systemPrompt = $state(''),
@@ -12,8 +13,26 @@
 		settings = $state(null)
 
 	$effect(() => {
-		if (mounted && showSettings) {
-			setSettings({
+		if (neverOpened && showSettings) {
+			neverOpened = false
+		}
+	})
+
+	$effect(async() => {
+		if (showSettings && !neverOpened) {
+			await tick()
+			settings = await getSettings()
+			console.log({settings})
+			name = settings.name || ''
+			systemPrompt = settings.system_prompt || ''
+			imageStyle = settings.style_prompt || ''
+		}
+		
+		if (mounted && showSettings && settings && !neverOpened &&
+			(name !== (settings.name || '') || 
+			systemPrompt !== (settings.system_prompt || '') || 
+			imageStyle !== (settings.style_prompt || ''))) {
+			await setSettings({
 				name: name,
 				system_prompt: systemPrompt,
 				style_prompt: imageStyle
@@ -23,10 +42,6 @@
 
 	onMount(async () => {
 		mounted = true
-		settings = await getSettings()
-		name = settings.name || ''
-		systemPrompt = settings.system_prompt || ''
-		imageStyle = settings.style_prompt || ''
 	})
 </script>
 

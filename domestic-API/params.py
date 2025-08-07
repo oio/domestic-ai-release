@@ -34,3 +34,4 @@ class SettingsUpdateRequest(BaseModel):
 	system_prompt: Optional[str] = Field(default=settings["system_prompt"], description="System prompt for the LLM")
 	style_prompt: Optional[str] = Field(default=settings["style_prompt"], description="Style prompt for the LLM")
 	name: Optional[str] = Field(default=settings["name"], description="Name of the bot")
+	first_time: Optional[bool] = Field(default=settings["first_time"], description="Whether the bot is in first time")
