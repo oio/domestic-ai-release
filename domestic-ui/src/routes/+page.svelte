@@ -25,7 +25,7 @@
 	})
 
 </script>
-<section class="w-full h-full flex items-center justify-center">
+<section class="w-full flex items-center justify-center">
 	{#if $status.firstTime}
 		<WelcomeModal />
 	{:else}

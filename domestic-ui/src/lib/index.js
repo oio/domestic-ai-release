@@ -79,7 +79,7 @@ export const callBgRemoval = async (data) => {
 			console.log(result);
 			status.update(s => ({
 				...s,
-				output: result.result
+				output: 'data:image/png;base64,' + result.result
 			}));
 		}
 	} catch (error) {
@@ -162,7 +162,6 @@ export const getSettings = async () => {
 		return null;
 	}
 }
-
 
 export const setSettings = async (newSettings) => {
 	const currentSettings = await getSettings()
