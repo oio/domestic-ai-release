@@ -36,6 +36,7 @@ class Startup:
 		self.command_path = command_path
 		self.startup_timeout = startup_timeout
 		self.process = None  
+		logger.info(f"Initialized {self.name} service with path: {self.command_path}, URL: {self.url}")
 
 	async def is_running(self, session: aiohttp.ClientSession, timeout: int = 24) -> bool:
 		if self.port is None:
