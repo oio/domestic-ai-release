@@ -16,6 +16,8 @@ logging.basicConfig(
 	]
 )
 
+ports = [23847, 35672, 29384, 47219, 52847]
+
 logger = logging.getLogger("main")
 
 shutdown_in_progress = False
@@ -32,8 +34,8 @@ async def initialize_services():
 	logger.info("Initialization complete - system is now running")
 	
 	try:
-		logger.info("Opening browser to http://localhost:8000")
-		webbrowser.open("http://localhost:5173")
+		logger.info("Opening browser to http://localhost:29384")
+		webbrowser.open("http://localhost:29384")
 	except Exception as e:
 		logger.error(f"Failed to open browser: {e}")
 	
@@ -91,7 +93,7 @@ async def forceful_kill_processes():
 		logger.error(f"Error during system command kill: {e}")
 	
 	try:
-		for port in [8000, 8008, 8042, 8123]:
+		for port in ports:
 			proc = startup.find_process_by_port(port)
 			if proc:
 				logger.info(f"Found process using port {port} (PID: {proc.pid}), killing it...")
@@ -119,7 +121,7 @@ async def verify_shutdown():
 		except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
 			pass
 	
-	for port in [8000, 8008, 8042, 8123]:
+	for port in ports:
 		proc = startup.find_process_by_port(port)
 		if proc:
 			try:

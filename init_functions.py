@@ -13,10 +13,10 @@ from typing import Dict, List, Optional, Set
 dotenv.load_dotenv()
 logger = logging.getLogger('domestic-ai')
 
-STARTUP_TIMEOUT = 10
+STARTUP_TIMEOUT = 20
 DOMESTIC_AI_PATH = os.environ['DOMESTIC_AI_PATH']
 API_HOST = "0.0.0.0"
-API_PORT = 8000
+API_PORT = 35672
 API_ENDPOINT = "/api_endpoints"
 child_processes = set()
 bot_process = None
@@ -118,19 +118,19 @@ services = [
 	),
 	Startup(
 		name="Rembg Tool", 
-		port=8008, 
+		port=52847, 
 		endpoint="/",
 		command_path=os.path.join(DOMESTIC_AI_PATH, "domestic-tools", "domestic-rembg", "run-rembg.command")
 	),
 	Startup(
 		name="Image Generation Tool", 
-		port=8042, 
+		port=47219, 
 		endpoint="/queue-status",
 		command_path=os.path.join(DOMESTIC_AI_PATH, "domestic-tools", "domestic-imagen", "run-imagen.command")
 	), 
 	Startup(
 		name="UI", 
-		port=5173, 
+		port=29384, 
 		endpoint="/",
 		command_path=os.path.join(DOMESTIC_AI_PATH, "domestic-ui", "run-ui.command")
 	),

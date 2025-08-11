@@ -11,8 +11,7 @@ import tools
 load_dotenv()
 
 logger = logging.getLogger(__name__)
-#ollama_client = ollama.AsyncClient("http://0.0.0.0:11434")
-ollama_client = httpx.AsyncClient(base_url="http://0.0.0.0:8123/")
+ollama_client = httpx.AsyncClient(base_url="http://0.0.0.0:23847/")
 
 async def query_llm(prompt, system_prompt=None):
 	"""
@@ -69,7 +68,7 @@ async def query_llm_structured(prompt, schema, system_prompt=None):
 	Returns:
 		Validated schema object
 	"""
-	model_url = "http://0.0.0.0:8123/v1/chat/completions"
+	model_url = "http://0.0.0.0:23847/v1/chat/completions"
 	
 	schema_json = json.dumps(schema.model_json_schema())
 	format_instruction = f"You must respond with JSON that conforms to this schema: {schema_json}"
@@ -135,7 +134,7 @@ async def query_llm_structured(prompt, schema, system_prompt=None):
 
 async def generate_image(prompt, width=512, height=512):
 	async def _execute_image_gen(prompt, width, height):
-		url = "http://0.0.0.0:8042/generate"
+		url = "http://0.0.0.0:47219/generate"
 		payload = {
 			"prompt": prompt,
 			"width": width,
@@ -166,7 +165,7 @@ async def remove_background(image_url, is_b64):
 	Returns:
 		Dict with base64 encoded image without background
 	"""
-	url = "http://0.0.0.0:8008/rembg"
+	url = "http://0.0.0.0:52847/rembg"
 	payload = {
 		"image_url": image_url,
 		"is_b64": is_b64

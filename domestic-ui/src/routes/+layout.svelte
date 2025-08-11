@@ -9,7 +9,7 @@
 <div class="w-screen h-screen fixed top-0 left-0 -z-10 bg-black">
 	{#if !$status.modality} 
 		{#if $status.firstTime}
-			<img transition:fade src="/screens/roby-start.png" alt="background" class="bg-image">
+			<img transition:fade src="/screens/roby-start.png" alt="background" class="w-full h-full object-cover">
 		{:else}
 			<img transition:fade src="/screens/roby-idle.png" alt="background" class="bg-image">
 		{/if}

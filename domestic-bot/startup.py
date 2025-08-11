@@ -14,7 +14,7 @@ logger = logging.getLogger('discord')
 STARTUP_TIMEOUT = 60
 DOMESTIC_AI_PATH = os.environ['DOMESTIC_AI_PATH']
 API_HOST = "0.0.0.0"
-API_PORT = 8000
+API_PORT = 35672
 API_ENDPOINT = "/api_endpoints"
 
 class Startup:
@@ -177,13 +177,13 @@ services = [
 	),
 	Startup(
 		name="Rembg Tool", 
-		port=8008, 
+		port=52847, 
 		endpoint="/",
 		command_path=os.path.join(DOMESTIC_AI_PATH, "domestic-tools", "domestic-rembg", "run-rembg.command")
 	),
 	Startup(
 		name="Image Generation Tool", 
-		port=8042, 
+		port=47219, 
 		endpoint="/queue-status",  # Changed from "/" to a real endpoint
 		command_path=os.path.join(DOMESTIC_AI_PATH, "domestic-tools", "domestic-imagen", "run-imagen.command")
 	)

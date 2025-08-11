@@ -23,7 +23,7 @@ logger = logging.getLogger('discord')
 
 # API info
 API_HOST = "0.0.0.0"  
-API_PORT = 8000
+API_PORT = 35672
 API_URL = f"http://{API_HOST}:{API_PORT}"
 STARTUP_TIMEOUT = 60
 shutdown_requested = False

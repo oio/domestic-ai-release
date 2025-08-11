@@ -4,7 +4,7 @@
 	import { status } from '$lib/stores'
 	import { onMount } from 'svelte'
 
-	let prompt = $state(''), 
+	let prompt = $state('Write a poem'), 
 		systemPrompt = $state(''), 
 		showAdvancedSettings = $state(false)
 

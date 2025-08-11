@@ -4,9 +4,9 @@
 	"version": "0.0.2",
 	"type": "module",
 	"scripts": {
-		"dev": "vite dev",
+		"dev": "vite dev --port 29384",
 		"build": "vite build",
-		"preview": "vite preview",
+		"preview": "vite preview --port 29384",
 		"prepare": "svelte-kit sync || echo ''",
 		"format": "prettier --write .",
 		"lint": "prettier --check ."

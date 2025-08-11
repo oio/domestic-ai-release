@@ -1,9 +1,11 @@
 import { status } from '$lib/stores'
 
+const API_PORT = 35672
+
 export const callLLM = async (data) => {
 	console.log('callLLM', data)
 	try {
-		const response = await fetch('http://localhost:8000/api/roby', {
+		const response = await fetch(`http://localhost:${API_PORT}/api/roby`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
@@ -13,20 +15,20 @@ export const callLLM = async (data) => {
 		if (response.ok) {
 			let result = await response.json()
 			console.log(result)
-			status.update(s => ({
+			status.update((s) => ({
 				...s,
 				output: result.result
-			}));
+			}))
 		} else {
-			console.error(response);
-			status.update(s => ({
+			console.error(response)
+			status.update((s) => ({
 				...s,
 				error: 'API request failed'
 			}))
 		}
 	} catch (error) {
 		console.error(error)
-		status.update(s => ({
+		status.update((s) => ({
 			...s,
 			error: error.message
 		}))
@@ -35,65 +37,65 @@ export const callLLM = async (data) => {
 
 export const callImagen = async (prompt) => {
 	try {
-		const response = await fetch('http://localhost:8000/api/image', {
+		const response = await fetch(`http://localhost:${API_PORT}/api/image`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
 			},
-			body: JSON.stringify({prompt})
-		});
+			body: JSON.stringify({ prompt })
+		})
 		if (response.ok) {
-			let result = await response.json();
-			console.log(result);
-			status.update(s => ({
+			let result = await response.json()
+			console.log(result)
+			status.update((s) => ({
 				...s,
 				output: 'data:image/png;base64,' + result.result.b64
-			}));
+			}))
 		} else {
-			console.error(response);
-			status.update(s => ({
+			console.error(response)
+			status.update((s) => ({
 				...s,
 				error: 'API request failed'
-			}));
+			}))
 		}
 	} catch (error) {
-		console.error(error);
-		status.update(s => ({
+		console.error(error)
+		status.update((s) => ({
 			...s,
 			error: error.message
-		}));
+		}))
 	}
 }
 
 export const callBgRemoval = async (data) => {
 	try {
-		const response = await fetch('http://localhost:8000/api/rembg', {
+		const response = await fetch(`http://localhost:${API_PORT}/api/rembg`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify(data)
-		});
+		})
 		if (response.ok) {
-			let result = await response.json();
-			console.log(result);
-			status.update(s => ({
+			let result = await response.json()
+			console.log(result)
+			status.update((s) => ({
 				...s,
 				output: 'data:image/png;base64,' + result.result
-			}));
+			}))
 		}
 	} catch (error) {
-		console.error(error);
-		status.update(s => ({
+		console.error(error)
+		status.update((s) => ({
 			...s,
 			error: error.message
-		}));
+		}))
 	}
 }
 
 export const callPokemon = async () => {
 	try {
-		const response = await fetch('http://localhost:8000/api/pokemon', {
+		const response = await fetch(`http://localhost:${API_PORT}/api/pokemon`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
@@ -103,7 +105,7 @@ export const callPokemon = async () => {
 		if (response.ok) {
 			let result = await response.json()
 			console.log(result)
-			status.update(s => ({
+			status.update((s) => ({
 				...s,
 				output: {
 					msg: result.result.msg,
@@ -113,33 +115,33 @@ export const callPokemon = async () => {
 		}
 	} catch (error) {
 		console.error(error)
-		status.update(s => ({
+		status.update((s) => ({
 			...s,
 			error: error.message
 		}))
-	} 
+	}
 }
 
 export const callHaiku = async (about) => {
 	try {
-		const response = await fetch('http://localhost:8000/api/haiku', {
+		const response = await fetch(`http://localhost:${API_PORT}/api/haiku`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
 			},
-			body: JSON.stringify({about})
+			body: JSON.stringify({ about })
 		})
 		if (response.ok) {
 			let result = await response.json()
 			console.log(result)
-			status.update(s => ({
+			status.update((s) => ({
 				...s,
 				output: result.result
 			}))
 		}
 	} catch (error) {
-		console.error(error);
-		status.update(s => ({
+		console.error(error)
+		status.update((s) => ({
 			...s,
 			error: error.message
 		}))
@@ -147,19 +149,19 @@ export const callHaiku = async (about) => {
 }
 
 export const getSettings = async () => {
-	const response = await fetch('http://localhost:8000/api/settings_get', {
+	const response = await fetch(`http://localhost:${API_PORT}/api/settings_get`, {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json'
-		}, 
+		},
 		body: JSON.stringify({})
-	});
+	})
 	if (response.ok) {
 		let result = await response.json()
 		return result.result
 	} else {
 		console.error(response)
-		return null;
+		return null
 	}
 }
 
@@ -167,7 +169,7 @@ export const setSettings = async (newSettings) => {
 	const currentSettings = await getSettings()
 	const mergedSettings = { ...currentSettings, ...newSettings }
 
-	const response = await fetch('http://localhost:8000/api/settings_update', {
+	const response = await fetch(`http://localhost:${API_PORT}/api/settings_update`, {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json'

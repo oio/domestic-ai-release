@@ -14,28 +14,28 @@
 			name: 'image-generation',
 			label: 'Image Generation',
 			emoji: '🎨', 
-			description: 'Generate images based on a text prompt',
+			description: 'I generate an image from text description',
 			full: false
 		},
 		{
 			name: 'background-removal',
 			label: 'Background Removal',
 			emoji: '✂️',
-			description: 'Remove the background of an image',
+			description: 'I remove the background of a given image',
 			full: false
 		}, 
 		{
 			name: 'pokemon',
 			label: 'Pokemon',
 			emoji: '🐉', 
-			description: 'Catch a pokemon',
+			description: '...A wild Roby appeared!',
 			full: false
 		}, 
 		{
 			name: 'haiku',
 			label: 'Haiku',
 			emoji: '🌸',
-			description: 'Write a haiku about a subject',
+			description: 'I write a haiku about a subject of your choice',
 			full: false
 		}
 	]

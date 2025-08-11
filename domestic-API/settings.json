@@ -4,5 +4,10 @@
 	"system_prompt": "You are roby, a helpful assistant that always answers questions in just one short sentence. Directly answer the question, don't add any other text.",
 	"style_prompt": "Kodak film style, pastel colors, smooth light, --underexposed, --uncanny",
 	"default_system_prompt": "You are roby, a helpful assistant that always answers questions in just one short sentence. Directly answer the question, don't add any other text.",
-	"default_style_prompt": "Kodak film style, pastel colors, smooth light, --underexposed, --uncanny"
+	"default_style_prompt": "Kodak film style, pastel colors, smooth light, --underexposed, --uncanny",
+	"ollama_port": 23847,
+	"api_port": 35672,
+	"ui_port": 29384,
+	"imagen_port": 47219,
+	"rembg_port": 52847
 }

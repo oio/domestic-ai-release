@@ -33,11 +33,18 @@ app = FastAPI(
 )
 
 app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],
-    allow_methods=["POST"],
-    allow_headers=["*"],
+	CORSMiddleware,
+	allow_origins=["http://localhost:29384", "http://127.0.0.1:29384"],
+	allow_methods=["POST"],
+	allow_headers=["*"],
 )
+
+""" app.add_middleware(
+	CORSMiddleware,
+	allow_origins=["http://localhost:*", "http://127.0.0.1:*"],
+	allow_methods=["POST"],
+	allow_headers=["*"],
+) """
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="templates")
@@ -171,4 +178,4 @@ async def general_exception_handler(request: Request, exc: Exception):
 	)
 
 if __name__ == "__main__":
-	uvicorn.run("domestic_api:app", host="0.0.0.0", port=8000, reload=True)
+	uvicorn.run("domestic_api:app", host="0.0.0.0", port=35672, reload=True)

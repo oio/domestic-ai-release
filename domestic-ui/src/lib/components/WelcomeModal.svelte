@@ -1,4 +1,5 @@
 <script>
+	import Info from './Info.svelte'
 	import { getSettings, setSettings } from '$lib'
 	import { status } from '$lib/stores'
 	import { fade, slide } from 'svelte/transition'
@@ -93,12 +94,14 @@
 					<div class='settings-field'>
 						<label for="system-prompt">System Prompt</label>
 						<textarea type="text" class="h-24">{systemPrompt}</textarea> 
-						<p class='settings-info'>Defines how Roby will handle textual conversation</p>
+						<!-- <p class='settings-info'>Defines how Roby will handle textual conversation</p> -->
+						<Info text="Defines how Roby will handle textual conversation" />
 					</div>
 					<div class='settings-field'>
 						<label for="image-style">Image Style</label>
 						<textarea type="text">{stylePrompt}</textarea> 
-						<p class='settings-info'>Defines how Roby will generate images</p>
+						<!-- <p class='settings-info'>Defines how Roby will generate images</p> -->
+						<Info text="Defines how Roby will generate images" />
 					</div>
 				</form>
 			</div>

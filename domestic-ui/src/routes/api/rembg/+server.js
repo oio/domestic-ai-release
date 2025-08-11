@@ -1,10 +1,10 @@
-import { json } from '@sveltejs/kit';
+import { json } from '@sveltejs/kit'
 
 export async function POST({ request }) {
 	let { image_url, is_b64 } = await request.json()
-	console.log({image_url, is_b64})
+	console.log({ image_url, is_b64 })
 	try {
-		const response = await fetch('http://0.0.0.0:8000/api/rembg', {
+		const response = await fetch('http://0.0.0.0:35672/api/rembg', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
@@ -15,6 +15,6 @@ export async function POST({ request }) {
 		const data = await response.json()
 		return json(data)
 	} catch (error) {
-		return json({ error: error.message }, { status: 500 });
+		return json({ error: error.message }, { status: 500 })
 	}
 }
