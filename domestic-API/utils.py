@@ -25,7 +25,7 @@ async def query_llm(prompt, system_prompt=None):
 	Returns:
 		The model's response as a string
 	"""
-	model_url = "http://0.0.0.0:8123/v1/chat/completions"
+	model_url = "http://0.0.0.0:23847/v1/chat/completions"
 	
 	messages = []
 	if system_prompt:
