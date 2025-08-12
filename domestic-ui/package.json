@@ -5,7 +5,7 @@
 	"type": "module",
 	"scripts": {
 		"dev": "vite dev --port 29384",
-		"build": "vite build",
+		"build": "vite build -- --verbose",
 		"preview": "vite preview --port 29384",
 		"prepare": "svelte-kit sync || echo ''",
 		"format": "prettier --write .",
@@ -29,5 +29,8 @@
 		"onlyBuiltDependencies": [
 			"esbuild"
 		]
+	},
+	"dependencies": {
+		"@sveltejs/adapter-static": "^3.0.9"
 	}
 }

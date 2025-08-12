@@ -1,4 +1,4 @@
 #!/bin/bash
 cd "$(dirname "$0")"
-npm install
-npm run dev
+cd build
+python -m http.server 29384
